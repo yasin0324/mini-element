@@ -1,0 +1,127 @@
+.me-button {
+    --me-button-font-weight: var(--me-font-weight-primary);
+    --me-button-border-color: var(--me-border-color);
+    --me-button-bg-color: var(--me-fill-color-blank);
+    --me-button-text-color: var(--me-text-color-regular);
+    --me-button-disabled-text-color: var(--me-disabled-text-color);
+    --me-button-disabled-bg-color: var(--me-fill-color-blank);
+    --me-button-disabled-border-color: var(--me-border-color-light);
+    --me-button-hover-text-color: var(--me-color-primary);
+    --me-button-hover-bg-color: var(--me-color-primary-light-9);
+    --me-button-hover-border-color: var(--me-color-primary-light-7);
+    --me-button-active-text-color: var(--me-button-hover-text-color);
+    --me-button-active-border-color: var(--me-color-primary);
+    --me-button-active-bg-color: var(--me-button-hover-bg-color);
+    --me-button-outline-color: var(--me-color-primary-light-5);
+    --me-button-active-color: var(--me-text-color-primary);
+}
+.me-button {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    line-height: 1;
+    height: 32px;
+    white-space: nowrap;
+    cursor: pointer;
+    color: var(--me-button-text-color);
+    text-align: center;
+    box-sizing: border-box;
+    outline: none;
+    transition: 0.1s;
+    font-weight: var(--me-button-font-weight);
+    user-select: none;
+    vertical-align: middle;
+    -webkit-appearance: none;
+    background-color: var(--me-button-bg-color);
+    border: var(--me-border);
+    border-color: var(--me-button-border-color);
+    padding: 8px 15px;
+    font-size: var(--me-font-size-base);
+    border-radius: var(--me-border-radius-base);
+    & + & {
+        margin-left: 12px;
+    }
+    &:hover,
+    &:focus {
+        color: var(--me-button-hover-text-color);
+        border-color: var(--me-button-hover-border-color);
+        background-color: var(--me-button-hover-bg-color);
+        outline: none;
+    }
+    &:active {
+        color: var(--me-button-active-text-color);
+        border-color: var(--me-button-active-border-color);
+        background-color: var(--me-button-active-bg-color);
+        outline: none;
+    }
+    &.is-plain {
+        --me-button-hover-text-color: var(--me-color-primary);
+        --me-button-hover-bg-color: var(--me-fill-color-blank);
+        --me-button-hover-border-color: var(--me-color-primary);
+    }
+    /*round*/
+    &.is-round {
+        border-radius: var(--me-border-radius-round);
+    }
+    /*circle*/
+    &.is-circle {
+        border-radius: 50%;
+        padding: 8px;
+    }
+    /*disabled*/
+    &.is-disabled,
+    &.is-disabled:hover,
+    &.is-disabled:focus,
+    &[disabled],
+    &[disabled]:hover,
+    &[disabled]:focus {
+        color: var(--me-button-disabled-text-color);
+        cursor: not-allowed;
+        background-image: none;
+        background-color: var(--me-button-disabled-bg-color);
+        border-color: var(--me-button-disabled-border-color);
+    }
+    [class*="me-icon"] + span {
+        margin-left: 6px;
+    }
+}
+@each $val in primary, success, warning, info, danger {
+    .me-button--$(val) {
+        --me-button-text-color: var(--me-color-white);
+        --me-button-bg-color: var(--me-color-$(val));
+        --me-button-border-color: var(--me-color-$(val));
+        --me-button-outline-color: var(--me-color-$(val)-light-5);
+        --me-button-active-color: var(--me-color-$(val)-dark-2);
+        --me-button-hover-text-color: var(--me-color-white);
+        --me-button-hover-bg-color: var(--me-color-$(val)-light-3);
+        --me-button-hover-border-color: var(--me-color-$(val)-light-3);
+        --me-button-active-bg-color: var(--me-color-$(val)-dark-2);
+        --me-button-active-border-color: var(--me-color-$(val)-dark-2);
+        --me-button-disabled-text-color: var(--me-color-white);
+        --me-button-disabled-bg-color: var(--me-color-$(val)-light-5);
+        --me-button-disabled-border-color: var(--me-color-$(val)-light-5);
+    }
+    .me-button--$(val).is-plain {
+        --me-button-text-color: var(--me-color-$(val));
+        --me-button-bg-color: var(--me-color-$(val)-light-9);
+        --me-button-border-color: var(--me-color-$(val)-light-5);
+        --me-button-hover-text-color: var(--me-color-white);
+        --me-button-hover-bg-color: var(--me-color-$(val));
+        --me-button-hover-border-color: var(--me-color-$(val));
+        --me-button-active-text-color: var(--me-color-white);
+    }
+}
+.me-button--large {
+    --me-button-size: 40px;
+    height: var(--me-button-size);
+    padding: 12px 19px;
+    font-size: var(--me-font-size-base);
+    border-radius: var(--me-border-radius-base);
+}
+.me-button--small {
+    --me-button-size: 24px;
+    height: var(--me-button-size);
+    padding: 5px 11px;
+    font-size: 12px;
+    border-radius: calc(var(--me-border-radius-base) - 1px);
+}
