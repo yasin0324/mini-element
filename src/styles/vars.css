@@ -88,4 +88,8 @@
     --me-disabled-bg-color: var(--me-fill-color-light);
     --me-disabled-text-color: var(--me-text-color-placeholder);
     --me-disabled-border-color: var(--me-border-color-light);
+
+    /* animation */
+    --me-transition-duration: 0.3s;
+    --me-transition-duration-fast: 0.2s;
 }
