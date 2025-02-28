@@ -2,6 +2,7 @@
 import Button from "./components/Button/Button.vue";
 import Collapse from "./components/Collapse/Collapse.vue";
 import CollapseItem from "./components/Collapse/CollapseItem.vue";
+import Icon from "./components/Icon/Icon.vue";
 import type { ButtonInstance } from "./components/Button/types";
 import { onMounted, ref } from "vue";
 const buttonRef = ref<ButtonInstance | null>(null);
@@ -15,6 +16,7 @@ const openedValue = ref(["a"]);
 </script>
 
 <template>
+  <Icon icon="arrow-up" size="2xl" type="danger" spin color="#EA333D" />
   <div>
     <Button ref="buttonRef">Test Button</Button>
   </div>
