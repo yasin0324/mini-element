@@ -22,8 +22,8 @@ const openedValue = ref(["a"]);
   </div>
   <div>
     <Button>Default</Button>
-    <Button type="primary">Primary</Button>
-    <Button type="success">Success</Button>
+    <Button type="primary" icon="search">Primary</Button>
+    <Button type="success" loading>Success</Button>
     <Button type="info">Info</Button>
     <Button type="warning">Warning</Button>
     <Button type="danger">Danger</Button>
