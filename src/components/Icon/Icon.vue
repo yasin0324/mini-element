@@ -1,5 +1,5 @@
 <template>
-  <i class="me-icon" :class="{ [`me-icon--${type}`]: type }" :style="customStyles">
+  <i class="me-icon" :class="{ [`me-icon--${type}`]: type }" :style="customStyles" v-bind="$attrs">
     <font-awesome-icon v-bind="filteredProps" />
   </i>
 </template>
