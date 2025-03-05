@@ -3,18 +3,20 @@
     <div class="me-tooltip__trigger" ref="triggerNode" v-on="events">
       <slot />
     </div>
-    <div v-if="isOpen" class="me-tooltip__popper" ref="popperNode">
-      <slot name="content">
-        {{ content }}
-      </slot>
-    </div>
+    <Transition :name="transition">
+      <div v-if="isOpen" class="me-tooltip__popper" ref="popperNode">
+        <slot name="content">
+          {{ content }}
+        </slot>
+      </div>
+    </Transition>
   </div>
 </template>
 
 <script setup lang="ts">
 import type { TooltipProps, TooltipEmits, TooltipInstance } from "./type";
 import { createPopper, type Instance } from "@popperjs/core";
-import { ref, watch, reactive, onUnmounted } from "vue";
+import { ref, watch, reactive, onUnmounted, computed } from "vue";
 import useClickOutside from "@/hooks/useClickOutside";
 
 defineOptions({
@@ -24,6 +26,7 @@ defineOptions({
 const props = withDefaults(defineProps<TooltipProps>(), {
   placement: "bottom",
   trigger: "hover",
+  transition: "fade",
 });
 const emits = defineEmits<TooltipEmits>();
 // 内容区域是否展示
@@ -39,6 +42,13 @@ const popperContainerNode = ref<HTMLElement | null>(null);
 let popperInstance: null | Instance = null;
 let events: Record<string, any> = reactive({});
 let outerEvents: Record<string, any> = reactive({});
+
+const popperOptions = computed(() => {
+  return {
+    placements: props.placement,
+    ...props.popperOptions,
+  };
+});
 
 const togglePopper = () => {
   isOpen.value = !isOpen.value;
@@ -102,9 +112,7 @@ watch(
   (newValue) => {
     if (newValue) {
       if (triggerNode.value && popperNode.value) {
-        popperInstance = createPopper(triggerNode.value, popperNode.value, {
-          placement: props.placement,
-        });
+        popperInstance = createPopper(triggerNode.value, popperNode.value, popperOptions.value);
       } else {
         popperInstance?.destroy();
       }
