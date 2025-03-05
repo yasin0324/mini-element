@@ -1,0 +1,18 @@
+:root {
+    --me-c-brand: var(--me-color-primary);
+    --me-c-brand-light: var(--me-color-primary-light-3);
+    --me-c-brand-lighter: var(--me-color-primary-light-5);
+    --me-c-brand-dark: var(--me-color-primary-dark-2);
+    --me-c-brand-darker: #265F99;
+  
+    --component-preview-bg: var(--me-code-block-bg);
+    --component-preview-soft: var(--me-code-block-bg-light);
+  }
+  
+  body {
+    color: var(--me-c-text-1);
+  }
+  
+  h1, h2, h3, h4, h5, h6, p {
+    color: var(--me-c-text-1);
+  }
