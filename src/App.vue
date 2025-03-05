@@ -3,7 +3,7 @@ import { ref, h } from "vue";
 import { type TooltipInstance } from "./components/Tooltip/type";
 import Tooltip from "./components/Tooltip/Tooltip.vue";
 import Button from "./components/Button/Button.vue";
-import Dropdown from "./components/Dropdown/Dropdown.tsx";
+import Dropdown from "./components/Dropdown/Dropdown.vue";
 import type { MenuOption } from "./components/Dropdown/type";
 
 const options: MenuOption[] = [
@@ -24,5 +24,3 @@ const trigger = ref<any>("click");
     <Button>Dropdown</Button>
   </Dropdown>
 </template>
-
-<style scoped></style>
