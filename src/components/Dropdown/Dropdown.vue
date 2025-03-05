@@ -16,7 +16,7 @@
           <li v-if="item.divided" role="separator" class="divided-placeholder"></li>
           <li
             class="me-dropdown__item"
-            :class="{ 'is-disable': item.disable, 'is-divided': item.divided }"
+            :class="{ 'is-disable': item.disabled, 'is-divided': item.divided }"
             :id="`dropdown-item-${item.key}`"
             @click="itemClick(item)"
           >
@@ -33,7 +33,7 @@ import type { DropdownProps, DropdownInstance, DropdownEmits, MenuOption } from 
 import Tooltip from "../Tooltip/Tooltip.vue";
 import type { TooltipInstance } from "../Tooltip/type";
 import RenderVnode from "../Common/RenderVnode";
-import { ref, type Ref } from "vue";
+import { ref } from "vue";
 
 defineOptions({
   name: "meDropdown",
@@ -42,23 +42,23 @@ defineOptions({
 const props = withDefaults(defineProps<DropdownProps>(), { hideAfterClick: true });
 const emits = defineEmits<DropdownEmits>();
 
-const tooltipRef = ref() as Ref<TooltipInstance>;
+const tooltipRef = ref<TooltipInstance | null>(null);
 
 const visibleChange = (e: boolean) => {
   emits("visible-change", e);
 };
 
 const itemClick = (e: MenuOption) => {
-  if (e.disable) {
+  if (e.disabled) {
     return;
   }
   emits("select", e);
   if (props.hideAfterClick) {
-    tooltipRef.value.hide();
+    tooltipRef.value?.hide();
   }
 };
 defineExpose<DropdownInstance>({
-  show: tooltipRef.value?.show,
-  hide: tooltipRef.value?.hide,
+  show: () => tooltipRef.value?.show(),
+  hide: () => tooltipRef.value?.hide(),
 });
 </script>

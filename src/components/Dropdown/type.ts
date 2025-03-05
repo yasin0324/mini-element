@@ -9,7 +9,7 @@ export interface DropdownProps extends TooltipProps {
 export interface MenuOption {
   label: string | VNode;
   key: string | number;
-  disable?: boolean;
+  disabled?: boolean;
   divided?: boolean;
 }
 

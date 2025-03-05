@@ -1,8 +1,9 @@
-import { computed, defineComponent, Fragment } from "vue";
+import { computed, defineComponent, Fragment, ref } from "vue";
 import type { PropType } from "vue";
 import { type Placement, type Options } from "@popperjs/core";
 import type { MenuOption } from "./type";
 import Tooltip from "../Tooltip/Tooltip.vue";
+import type { TooltipInstance } from "../Tooltip/type";
 export default defineComponent({
   name: "meDropdownq",
   props: {
@@ -42,19 +43,46 @@ export default defineComponent({
       type: Boolean,
     },
   },
-  setup(props, { slots }) {
+  emits: ["visible-change", "select"],
+  setup(props, { slots, emit, expose }) {
+    const tooltipRef = ref<TooltipInstance | null>(null);
+    const itemClick = (e: MenuOption) => {
+      if (e.disabled) {
+        return;
+      }
+      emit("select", e);
+      if (props.hideAfterClick) {
+        tooltipRef.value?.hide();
+      }
+    };
+    const visibleChange = (e: boolean) => {
+      emit("visible-change", e);
+    };
     const options = computed(() => {
       return props.menuOptions.map((item) => {
         return (
           <Fragment key={item.key}>
             {item.divided ? <li role="separator" class="divided-placeholder"></li> : ""}
-            <li class="me-dropdown__item" id={`dropdown-item-${item.key}`}>
+            <li
+              class={{
+                "me-dropdown__item": true,
+                "is-disabled": item.disabled,
+                "is-divided": item.divided,
+              }}
+              id={`dropdown-item-${item.key}`}
+              onClick={() => itemClick(item)}
+            >
               {item.label}
             </li>
           </Fragment>
         );
       });
     });
+    expose({
+      show: () => tooltipRef.value?.show(),
+      close: () => tooltipRef.value?.hide(),
+    });
+
     return () => (
       <div class="me-dropdown">
         <Tooltip
@@ -63,6 +91,8 @@ export default defineComponent({
           popperOptions={props.popperOptions}
           openDelay={props.openDelay}
           closeDelay={props.closeDelay}
+          ref={tooltipRef}
+          onVisible-change={visibleChange}
         >
           {{
             default: () => slots.default && slots.default(),
