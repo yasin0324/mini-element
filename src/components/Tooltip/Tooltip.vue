@@ -8,6 +8,7 @@
         <slot name="content">
           {{ content }}
         </slot>
+        <div id="arrow" data-popper-arrow></div>
       </div>
     </Transition>
   </div>
@@ -15,7 +16,7 @@
 
 <script setup lang="ts">
 import type { TooltipProps, TooltipEmits, TooltipInstance } from "./type";
-import { createPopper, type Instance } from "@popperjs/core";
+import { createPopper, offset, type Instance } from "@popperjs/core";
 import { ref, watch, reactive, onUnmounted, computed } from "vue";
 import { debounce } from "lodash-es";
 import useClickOutside from "@/hooks/useClickOutside";
@@ -49,6 +50,14 @@ let outerEvents: Record<string, any> = reactive({});
 const popperOptions = computed(() => {
   return {
     placements: props.placement,
+    modifiers: [
+      {
+        name: "offset",
+        options: {
+          offset: [0, 9],
+        },
+      },
+    ],
     ...props.popperOptions,
   };
 });
