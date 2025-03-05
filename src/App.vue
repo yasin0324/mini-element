@@ -13,7 +13,7 @@ const options: MenuOption[] = [
   { key: 4, label: "item4" },
 ];
 const tooltipRef = ref<TooltipInstance | null>(null);
-const trigger = ref<any>("hover");
+const trigger = ref<any>("click");
 // setTimeout(() => {
 //   trigger.value = "hover";
 // }, 2000);
