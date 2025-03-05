@@ -18,7 +18,14 @@ const close = () => {
 </script>
 
 <template>
-  <Tooltip placement="bottom" :trigger="trigger" manual ref="tooltipRef">
+  <Tooltip
+    placement="bottom"
+    :trigger="trigger"
+    manual
+    ref="tooltipRef"
+    :open-delay="1000"
+    :close-delay="1000"
+  >
     <Button>Tooltip</Button>
     <template #content>
       <h1>helloWorld</h1>
