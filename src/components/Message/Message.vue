@@ -17,7 +17,7 @@
 </template>
 
 <script setup lang="ts">
-import type { MessageProps } from "./type";
+import type { MessageProps } from "./types";
 import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
 import { onMounted, ref } from "vue";

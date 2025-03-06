@@ -15,7 +15,7 @@
 </template>
 
 <script setup lang="ts">
-import type { TooltipProps, TooltipEmits, TooltipInstance } from "./type";
+import type { TooltipProps, TooltipEmits, TooltipInstance } from "./types";
 import { createPopper, offset, type Instance } from "@popperjs/core";
 import { ref, watch, reactive, onUnmounted, computed } from "vue";
 import { debounce } from "lodash-es";

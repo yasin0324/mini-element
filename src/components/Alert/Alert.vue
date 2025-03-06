@@ -21,7 +21,7 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import Icon from "../Icon/Icon.vue";
-import type { AlertProps, AlertEmits } from "./type";
+import type { AlertProps, AlertEmits } from "./types";
 
 defineOptions({
   name: "meAlert",

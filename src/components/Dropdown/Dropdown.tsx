@@ -1,9 +1,9 @@
 import { computed, defineComponent, Fragment, ref } from "vue";
 import type { PropType } from "vue";
 import { type Placement, type Options } from "@popperjs/core";
-import type { MenuOption } from "./type";
+import type { MenuOption } from "./types";
 import Tooltip from "../Tooltip/Tooltip.vue";
-import type { TooltipInstance } from "../Tooltip/type";
+import type { TooltipInstance } from "../Tooltip/types";
 export default defineComponent({
   name: "meDropdownq",
   props: {

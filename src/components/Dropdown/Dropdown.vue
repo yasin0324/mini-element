@@ -32,9 +32,9 @@
 </template>
 
 <script setup lang="ts">
-import type { DropdownProps, DropdownInstance, DropdownEmits, MenuOption } from "./type";
+import type { DropdownProps, DropdownInstance, DropdownEmits, MenuOption } from "./types";
 import Tooltip from "../Tooltip/Tooltip.vue";
-import type { TooltipInstance } from "../Tooltip/type";
+import type { TooltipInstance } from "../Tooltip/types";
 import RenderVnode from "../Common/RenderVnode";
 import { ref } from "vue";
 

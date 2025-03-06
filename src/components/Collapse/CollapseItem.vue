@@ -29,7 +29,7 @@
 
 <script setup lang="ts">
 import { inject, computed } from "vue";
-import { collapseContextKey, type CollapseItemProps } from "./type";
+import { collapseContextKey, type CollapseItemProps } from "./types";
 import Icon from "../Icon/Icon.vue";
 
 defineOptions({
