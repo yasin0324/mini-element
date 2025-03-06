@@ -20,7 +20,7 @@
 import type { MessageProps } from "./types";
 import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 
 defineOptions({
   name: "meMessage",
@@ -41,6 +41,11 @@ function startTimer() {
 onMounted(() => {
   visible.value = true;
   startTimer();
+});
+watch(visible, (newValue) => {
+  if (!newValue) {
+    props.onDestory();
+  }
 });
 </script>
 
