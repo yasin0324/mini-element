@@ -1,23 +1,25 @@
 <template>
-  <div
-    class="me-message"
-    v-show="visible"
-    :class="{ [`vk-message--${type}`]: type, 'is-close': showClose }"
-    role="alert"
-    ref="messageRef"
-    :style="cssStyle"
-    @mouseenter="clearTimer"
-    @mouseleave="startTimer"
-  >
-    <div class="me-message__content">
-      <slot>
-        <RenderVnode v-if="message" :v-node="message"></RenderVnode>
-      </slot>
+  <Transition :name="transitionName" @after-leave="destoryComponent" @enter="updateHeight">
+    <div
+      class="me-message"
+      v-show="visible"
+      :class="{ [`me-message--${type}`]: type, 'is-close': showClose }"
+      role="alert"
+      ref="messageRef"
+      :style="cssStyle"
+      @mouseenter="clearTimer"
+      @mouseleave="startTimer"
+    >
+      <div class="me-message__content">
+        <slot>
+          <RenderVnode v-if="message" :v-node="message"></RenderVnode>
+        </slot>
+      </div>
+      <div class="me-message__close" v-if="showClose">
+        <Icon @click.stop="visible = false" icon="xmark" />
+      </div>
     </div>
-    <div class="me-message__close" v-if="showClose">
-      <Icon @click.stop="visible = false" icon="xmark" />
-    </div>
-  </div>
+  </Transition>
 </template>
 
 <script setup lang="ts">
@@ -25,7 +27,7 @@ import type { MessageProps } from "./types";
 import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
 import { getLastBottomOffset } from "./method";
-import { onMounted, ref, watch, computed, nextTick } from "vue";
+import { onMounted, ref, computed } from "vue";
 import useEventListener from "@/hooks/useEventListener";
 
 defineOptions({
@@ -36,6 +38,7 @@ const props = withDefaults(defineProps<MessageProps>(), {
   type: "info",
   duration: 3000,
   offset: 20,
+  transitionName: "fade-up",
 });
 
 // 是否显示
@@ -66,11 +69,9 @@ function startTimer() {
 function clearTimer() {
   clearTimeout(timer);
 }
-onMounted(async () => {
+onMounted(() => {
   visible.value = true;
   startTimer();
-  await nextTick();
-  height.value = messageRef.value!.getBoundingClientRect().height;
 });
 function keydown(e: Event) {
   const event = e as KeyboardEvent;
@@ -79,24 +80,17 @@ function keydown(e: Event) {
   }
 }
 useEventListener(document, "keydown", keydown);
-watch(visible, (newValue) => {
-  if (!newValue) {
-    props.onDestory();
-  }
-});
+
+const destoryComponent = () => {
+  props.onDestory();
+};
+
+const updateHeight = () => {
+  height.value = messageRef.value!.getBoundingClientRect().height;
+};
+
 defineExpose({
   bottomOffset,
   visible,
 });
 </script>
-
-<style>
-.me-message {
-  width: max-content;
-  position: fixed;
-  left: 50%;
-  top: 20px;
-  transform: translateX(-50%);
-  border: 1px solid blue;
-}
-</style>
