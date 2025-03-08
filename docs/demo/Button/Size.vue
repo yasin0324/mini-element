@@ -1,8 +1,8 @@
 <template>
   <div>
-    <Button size="small">小型按钮</Button>
-    <Button>默认按钮</Button>
-    <Button size="large">大型按钮</Button>
+    <Button size="small">Small</Button>
+    <Button>Default</Button>
+    <Button size="large">Large</Button>
   </div>
 </template>
 

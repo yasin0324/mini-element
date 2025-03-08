@@ -21,21 +21,14 @@ export default defineConfig({
   },
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: "/img/logo.jpg",
     nav: [
-      { text: "Home", link: "/" },
-      { text: "Examples", link: "/markdown-examples" },
+      { text: "安装", link: "/components" },
+      { text: "组件", link: "/components/button" },
     ],
-
     sidebar: [
       {
-        text: "Examples",
-        items: [
-          { text: "Markdown Examples", link: "/markdown-examples" },
-          { text: "Runtime API Examples", link: "/api-examples" },
-        ],
-      },
-      {
-        text: "Basic",
+        text: "Basic 基础组件",
         items: [
           {
             text: "Button",
@@ -44,8 +37,8 @@ export default defineConfig({
         ],
       },
     ],
-
-    socialLinks: [{ icon: "github", link: "https://github.com/vuejs/vitepress" }],
+    socialLinks: [{ icon: "github", link: "https://github.com/yasin0324/mini-element" }],
+    outline: [2, 3],
   },
   base: "/mini-element/",
 });
