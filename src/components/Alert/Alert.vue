@@ -1,5 +1,5 @@
 <template>
-  <Transition>
+  <Transition name="me-alert-fade">
     <div
       class="me-alert"
       :class="{

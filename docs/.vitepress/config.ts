@@ -31,8 +31,17 @@ export default defineConfig({
         text: "Basic 基础组件",
         items: [
           {
-            text: "Button",
+            text: "Button 按钮",
             link: "/components/button",
+          },
+        ],
+      },
+      {
+        text: "Feedback 反馈组件",
+        items: [
+          {
+            text: "Alert 提示",
+            link: "/components/alert",
           },
         ],
       },

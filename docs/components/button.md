@@ -41,18 +41,18 @@ description: Button 组件的文档
 
 ### 属性
 
-| 属性名     | 说明             | 类型      | 可选值                                                | 默认值 |
-| ---------- | ---------------- | --------- | ----------------------------------------------------- | ------ |
-| type       | 按钮类型         | `string`  | `primary` / `success` / `warning` / `danger` / `info` | —      |
-| size       | 按钮尺寸         | `string`  | `large` / `small`                                     | —      |
-| plain      | 是否为朴素按钮   | `boolean` | —                                                     | false  |
-| round      | 是否为圆角按钮   | `boolean` | —                                                     | false  |
-| circle     | 是否为圆形按钮   | `boolean` | —                                                     | false  |
-| loading    | 是否为加载中状态 | `boolean` | —                                                     | false  |
-| disabled   | 是否禁用         | `boolean` | —                                                     | false  |
-| icon       | 图标类名         | `string`  | —                                                     | —      |
-| autofocus  | 是否自动获取焦点 | `boolean` | —                                                     | false  |
-| nativeType | 原生 type 属性   | `string`  | `button` / `submit` / `reset`                         | button |
+| 属性名     | 说明             | 类型      | 可选值                                                | 默认值   |
+| ---------- | ---------------- | --------- | ----------------------------------------------------- | -------- |
+| type       | 按钮类型         | `string`  | `primary` / `success` / `warning` / `danger` / `info` | —        |
+| size       | 按钮尺寸         | `string`  | `large` / `small`                                     | —        |
+| plain      | 是否为朴素按钮   | `boolean` | —                                                     | `false`  |
+| round      | 是否为圆角按钮   | `boolean` | —                                                     | `false`  |
+| circle     | 是否为圆形按钮   | `boolean` | —                                                     | `false`  |
+| loading    | 是否为加载中状态 | `boolean` | —                                                     | `false`  |
+| disabled   | 是否禁用         | `boolean` | —                                                     | `false`  |
+| icon       | 图标类名         | `string`  | —                                                     | —        |
+| autofocus  | 是否自动获取焦点 | `boolean` | —                                                     | `false`  |
+| nativeType | 原生 type 属性   | `string`  | `button` / `submit` / `reset`                         | `button` |
 
 ### 插槽
 
