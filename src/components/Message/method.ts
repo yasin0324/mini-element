@@ -7,7 +7,7 @@ let seed = 1;
 const instances: MessageContext[] = shallowReactive([]);
 
 export const createMessage = (props: CreateMessageProps) => {
-  const { nextZIndex } = useZIndex;
+  const { nextZIndex } = useZIndex();
   const id = `message_${seed++}`;
   const container = document.createElement("div");
   const destory = () => {

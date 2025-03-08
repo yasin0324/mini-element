@@ -24,6 +24,7 @@ import RenderVnode from "../Common/RenderVnode";
 import Icon from "../Icon/Icon.vue";
 import { getLastBottomOffset } from "./method";
 import { onMounted, ref, watch, computed, nextTick } from "vue";
+import useEventListener from "@/hooks/useEventListener";
 
 defineOptions({
   name: "meMessage",
@@ -66,6 +67,14 @@ onMounted(async () => {
   await nextTick();
   height.value = messageRef.value!.getBoundingClientRect().height;
 });
+function keydown(e: Event) {
+  const event = e as KeyboardEvent;
+  if (event.code === "Escape") {
+    visible.value = false;
+  }
+}
+
+useEventListener(document, "keydown", keydown);
 watch(visible, (newValue) => {
   if (!newValue) {
     props.onDestory();
