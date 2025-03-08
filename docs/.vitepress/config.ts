@@ -43,6 +43,10 @@ export default defineConfig({
             text: "Alert 提示",
             link: "/components/alert",
           },
+          {
+            text: "Message 消息提示",
+            link: "/components/message",
+          },
         ],
       },
     ],

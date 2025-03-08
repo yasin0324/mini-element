@@ -9,31 +9,31 @@ description: Button 组件的文档
 
 ## 基础用法
 
-使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式
+使用 `type`、`plain`、`round` 和 `circle` 来定义按钮的样式。
 
 <preview path="../demo/Button/Basic.vue" title="基础用法" description="Button组件的基础用法"></preview>
 
 ## 禁用状态
 
-按钮不可用状态，通过 `disabled` 属性设置
+按钮不可用状态，通过 `disabled` 属性设置。
 
 <preview path="../demo/Button/Disabled.vue" title="禁用状态" description="通过 disabled 属性设置按钮为禁用状态"></preview>
 
 ## 按钮尺寸
 
-提供三种不同尺寸的按钮，默认为中等大小，可以通过 `size` 属性设置
+提供三种不同尺寸的按钮，默认为中等大小，可以通过 `size` 属性设置。
 
 <preview path="../demo/Button/Size.vue" title="按钮尺寸" description="通过 size 属性设置按钮大小"></preview>
 
 ## 加载状态按钮
 
-通过 `loading` 属性为 `true` 来显示正在加载的状态
+通过 `loading` 属性为 `true` 来显示正在加载的状态。
 
 <preview path="../demo/Button/Loading.vue" title="按钮样式" description="通过 plain 和 round 属性设置按钮样式"></preview>
 
 ## 图标按钮
 
-带图标的按钮可增强按钮的可识别性，使用 `icon` 属性即可，icon 的值请参考 Icon 组件，也可以设置在文字右边的 icon
+带图标的按钮可增强按钮的可识别性，使用 `icon` 属性即可，icon 的值请参考 Icon 组件，也可以设置在文字右边的 icon。
 
 <preview path="../demo/Button/Icon.vue" title="图标按钮" description="带图标的按钮"></preview>
 
