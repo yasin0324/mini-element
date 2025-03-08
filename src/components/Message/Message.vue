@@ -6,6 +6,8 @@
     role="alert"
     ref="messageRef"
     :style="cssStyle"
+    @mouseenter="clearTimer"
+    @mouseleave="startTimer"
   >
     <div class="me-message__content">
       <slot>
@@ -54,12 +56,15 @@ const cssStyle = computed(() => ({
   top: topOffset.value + "px",
   zIndex: props.zIndex,
 }));
-
+let timer: any;
 function startTimer() {
   if (props.duration === 0) return;
-  setTimeout(() => {
+  timer = setTimeout(() => {
     visible.value = false;
   }, props.duration);
+}
+function clearTimer() {
+  clearTimeout(timer);
 }
 onMounted(async () => {
   visible.value = true;
@@ -73,7 +78,6 @@ function keydown(e: Event) {
     visible.value = false;
   }
 }
-
 useEventListener(document, "keydown", keydown);
 watch(visible, (newValue) => {
   if (!newValue) {
