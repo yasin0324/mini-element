@@ -37,6 +37,45 @@ export default defineConfig({
         ],
       },
       {
+        text: "Form 表单组件",
+        items: [
+          {
+            text: "Input 输入框",
+            link: "/components/input",
+          },
+          {
+            text: "Select 选择器",
+            link: "/components/select",
+          },
+          {
+            text: "Switch 开关",
+            link: "/components/switch",
+          },
+          {
+            text: "Form 表单",
+            link: "/components/form",
+          },
+        ],
+      },
+      {
+        text: "Data 数据展示",
+        items: [
+          {
+            text: "Collapse 折叠面板",
+            link: "/components/collapse",
+          },
+        ],
+      },
+      {
+        text: "Navigation 导航",
+        items: [
+          {
+            text: "Dropdown 下拉菜单",
+            link: "/components/dropdown",
+          },
+        ],
+      },
+      {
         text: "Feedback 反馈组件",
         items: [
           {
@@ -46,6 +85,14 @@ export default defineConfig({
           {
             text: "Message 消息提示",
             link: "/components/message",
+          },
+          {
+            text: "Notification 通知",
+            link: "/components/notification",
+          },
+          {
+            text: "Tooltip 文字提示",
+            link: "/components/tooltip",
           },
         ],
       },

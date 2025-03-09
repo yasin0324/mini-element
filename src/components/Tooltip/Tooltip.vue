@@ -16,7 +16,7 @@
 
 <script setup lang="ts">
 import type { TooltipProps, TooltipEmits, TooltipInstance } from "./types";
-import { createPopper, offset, type Instance } from "@popperjs/core";
+import { createPopper, type Instance } from "@popperjs/core";
 import { ref, watch, reactive, onUnmounted, computed } from "vue";
 import { debounce } from "lodash-es";
 import useClickOutside from "@/hooks/useClickOutside";
@@ -49,7 +49,7 @@ let outerEvents: Record<string, any> = reactive({});
 
 const popperOptions = computed(() => {
   return {
-    placements: props.placement,
+    placement: props.placement,
     modifiers: [
       {
         name: "offset",
