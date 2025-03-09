@@ -4,7 +4,7 @@
       <slot />
     </div>
     <Transition :name="transition">
-      <div v-if="isOpen" class="me-tooltip__popper" ref="popperNode">
+      <div v-if="isOpen" class="me-tooltip__popper" ref="popperNode" @mouseenter="openFinal">
         <slot name="content">
           {{ content }}
         </slot>
@@ -29,8 +29,8 @@ const props = withDefaults(defineProps<TooltipProps>(), {
   placement: "bottom",
   trigger: "hover",
   transition: "fade",
-  openDelay: 0,
-  closeDelay: 0,
+  openDelay: 50,
+  closeDelay: 50,
 });
 const emits = defineEmits<TooltipEmits>();
 // 内容区域是否展示

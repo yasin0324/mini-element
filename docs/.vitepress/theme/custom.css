@@ -1,19 +1,19 @@
 :root {
-  --me-c-brand: var(--vk-color-primary);
-  --me-c-brand-light: var(--vk-color-primary-light-3);
-  --me-c-brand-lighter: var(--vk-color-primary-light-5);
-  --me-c-brand-dark: var(--vk-color-primary-dark-2);
-  --me-c-brand-darker: #265f99;
-  --me-layout-max-width: 1640px;
-  --me-code-font-size: 0.97em;
+  --vp-c-brand: var(--me-color-primary);
+  --vp-c-brand-light: var(--me-color-primary-light-3);
+  --vp-c-brand-lighter: var(--me-color-primary-light-5);
+  --vp-c-brand-dark: var(--me-color-primary-dark-2);
+  --vp-c-brand-darker: #265f99;
+  --vp-layout-max-width: 1640px;
+  --vp-code-font-size: 0.97em;
 
-  --component-preview-bg: var(--me-code-block-bg);
-  --component-preview-soft: var(--me-code-block-bg-light);
+  --component-preview-bg: var(--vp-code-block-bg);
+  --component-preview-soft: var(--vp-code-block-bg-light);
 }
 
 body {
-  color: var(--me-c-text-1);
-  font-family: var(--me-font-family-base);
+  color: var(--vp-c-text-1);
+  font-family: var(--vp-font-family-base);
 }
 
 h1,
@@ -23,18 +23,18 @@ h4,
 h5,
 h6,
 p {
-  color: var(--me-c-text-1);
+  color: var(--vp-c-text-1);
 }
 
-.meContent .meDoc.has-aside .container .content {
+.VPContent .VPDoc.has-aside .container .content {
   padding: 0;
 }
 
-.meContent .meDoc.has-aside .container .aside .content {
+.VPContent .VPDoc.has-aside .container .aside .content {
   padding-left: 16px;
 }
 
-.meContent .meDoc.has-aside .container .content .content-container {
+.VPContent .VPDoc.has-aside .container .content .content-container {
   max-width: none;
 }
 
@@ -43,32 +43,32 @@ p {
   padding: 20px 20px;
 }
 
-.me-doc table {
+.vp-doc table {
   width: 100%;
   display: table;
 }
 
-.meSidebar .nav .group .item .text {
+.VPSidebar .nav .group .item .text {
   font-size: 17px;
 }
 
-.meSidebar .nav .group .items .item .text {
+.VPSidebar .nav .group .items .item .text {
   font-size: 13px;
 }
 
-.meSidebarItem.is-active.has-active .item a {
+.VPSidebarItem.is-active.has-active .item a {
   border-radius: 8px;
   background-color: rgba(64, 158, 255, 0.1);
 }
 
-.meSidebarItem.is-active.has-active .item a .text {
+.VPSidebarItem.is-active.has-active .item a .text {
   font-weight: 600;
 }
 
-.meSidebarItem .items {
+.VPSidebarItem .items {
   margin-top: 5px;
 }
 
-.meSidebarItem .items .item a {
+.VPSidebarItem .items .item a {
   padding: 4px 15px;
 }
