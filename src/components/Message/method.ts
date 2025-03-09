@@ -10,14 +10,14 @@ export const createMessage = (props: CreateMessageProps) => {
   const { nextZIndex } = useZIndex();
   const id = `message_${seed++}`;
   const container = document.createElement("div");
-  const destory = () => {
+  const destroy = () => {
     // 删除数组中的实例
     const idx = instances.findIndex((instance) => instance.id === id);
     if (idx === -1) return;
     instances.splice(idx, 1);
     render(null, container);
   };
-  const manualDestory = () => {
+  const manualdestroy = () => {
     const instance = instances.find((instance) => instance.id === id);
     if (instance) {
       instance.vm.exposed!.visible.value = false;
@@ -27,7 +27,7 @@ export const createMessage = (props: CreateMessageProps) => {
     ...props,
     id,
     zIndex: nextZIndex(),
-    onDestory: destory,
+    ondestroy: destroy,
   };
   const vnode = h(MessageConstructor, newProps);
   render(vnode, container);
@@ -39,7 +39,7 @@ export const createMessage = (props: CreateMessageProps) => {
     vnode,
     vm,
     props: newProps,
-    destory: manualDestory,
+    destroy: manualdestroy,
   };
   instances.push(instance);
   return instance;

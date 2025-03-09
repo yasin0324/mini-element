@@ -1,0 +1,86 @@
+.me-notification {
+    --me-notification-width: 330px;
+    --me-notification-padding: 14px 26px 14px 13px;
+    --me-notification-radius: 8px;
+    --me-notification-shadow: var(--me-box-shadow-light);
+    --me-notification-border-color: var(--me-border-color-lighter);
+    --me-notification-icon-size: 24px;
+    --me-notification-close-font-size: var(--me-message-close-size, 16px);
+    --me-notification-content-font-size: var(--me-font-size-base);
+    --me-notification-content-color: var(--me-text-color-regular);
+    --me-notification-title-font-size: 16px;
+    --me-notification-title-color: var(--me-text-color-primary);
+    --me-notification-close-color: var(--me-text-color-secondary);
+    --me-notification-close-hover-color: var(--me-text-color-regular);
+}
+
+.me-notification {
+    display: flex;
+    width: var(--me-notification-width);
+    padding: var(--me-notification-padding);
+    border-radius: var(--me-notification-radius);
+    box-sizing: border-box;
+    border: 1px solid var(--me-notification-border-color);
+    position: fixed;
+    background-color: var(--me-bg-color-overlay);
+    box-shadow: var(--me-notification-shadow);
+    /* transition: opacity var(--me-transition-duration),
+      transform var(--me-transition-duration), right var(--me-transition-duration),
+      top 0.4s, bottom var(--me-transition-duration); */
+    transition: opacity var(--me-transition-duration),
+        transform var(--me-transition-duration),
+        right var(--me-transition-duration), top 0.4s;
+    overflow: hidden;
+    right: 10px;
+
+    .me-notification__icon {
+        height: var(--me-notification-icon-size);
+        width: var(--me-notification-icon-size);
+        font-size: var(--me-notification-icon-size);
+        color: var(--me-notification-icon-color);
+    }
+
+    .me-notification__text {
+        margin: 0 10px;
+
+        .me-notification__title {
+            font-weight: 700;
+            font-size: var(--me-notification-title-font-size);
+            line-height: var(--me-notification-icon-size);
+            color: var(--me-notification-title-color);
+            margin: 0;
+        }
+
+        .me-notification__content {
+            font-size: var(--me-notification-content-font-size);
+            line-height: 24px;
+            margin: 6px 0 0;
+            color: var(--me-notification-content-color);
+        }
+    }
+
+    .me-notification__close {
+        position: absolute;
+        top: 18px;
+        right: 15px;
+        cursor: pointer;
+        color: var(--me-notification-close-color);
+        font-size: var(--me-notification-close-font-size);
+    }
+}
+
+@each $val in info, success, warning, danger {
+    .me-notification--$(val) {
+        --me-notification-icon-color: var(--me-color-$(val));
+        color: var(--me-notification-icon-color);
+    }
+}
+
+.me-notification-fade-enter-from {
+    right: 0;
+    transform: translate(100%);
+}
+
+.me-notification-fade-leave-to {
+    opacity: 0;
+}

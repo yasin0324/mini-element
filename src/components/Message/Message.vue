@@ -1,5 +1,5 @@
 <template>
-  <Transition :name="transitionName" @after-leave="destoryComponent" @enter="updateHeight">
+  <Transition :name="transitionName" @after-leave="destroyComponent" @enter="updateHeight">
     <div
       class="me-message"
       v-show="visible"
@@ -81,8 +81,8 @@ function keydown(e: Event) {
 }
 useEventListener(document, "keydown", keydown);
 
-const destoryComponent = () => {
-  props.onDestory();
+const destroyComponent = () => {
+  props.ondestroy();
 };
 
 const updateHeight = () => {

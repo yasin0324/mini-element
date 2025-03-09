@@ -37,16 +37,9 @@ export const createNotification = (props: CreateNotificationProps) => {
   };
   const vnode = h(Notification, newProps);
 
-  // 这里用 createApp 也能达到效果，但是 createApp 返回的是一个应用的实例，太重了
-  /**
-   * 此时会触发 Notification 组件的 setup，当调用 setup 中的 getLastBottomOffset 函数时，instances 还未执行 push 操作，
-   * 如果 instances 是一个普通数组，getLastBottomOffset 不会找到对应的 idx，因此 instances 必须是一个响应式的数据，
-   * 那么当 push 之后， getLastBottomOffset 会重新执行
-   */
   render(vnode, container);
   document.body.appendChild(container.firstElementChild!);
 
-  /** 如果把这段代码移到 render 前面，也是不可行的，因为 vm 是异步的，如果组件未渲染，它的值会是 null */
   const vm = vnode.component!;
   const instance = {
     id,

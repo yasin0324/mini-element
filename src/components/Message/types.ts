@@ -5,7 +5,7 @@ export interface MessageProps {
   duration?: number;
   showClose?: boolean;
   type?: "success" | "info" | "warning" | "danger";
-  onDestory: () => void;
+  ondestroy: () => void;
   id: string;
   zIndex: number;
   offset?: number;
@@ -16,6 +16,6 @@ export interface MessageContext {
   vnode: VNode;
   vm: ComponentInternalInstance;
   props: MessageProps;
-  destory: () => void;
+  destroy: () => void;
 }
-export type CreateMessageProps = Omit<MessageProps, "onDestory" | "id" | "zIndex">;
+export type CreateMessageProps = Omit<MessageProps, "ondestroy" | "id" | "zIndex">;

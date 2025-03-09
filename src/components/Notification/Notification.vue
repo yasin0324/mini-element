@@ -1,21 +1,21 @@
 <template>
-  <Transition name="me-notification-fade" @enter="updateHeight" @after-leave="destoryComponent">
+  <Transition name="me-notification-fade" @enter="updateHeight" @after-leave="destroyComponent">
     <div
+      ref="notificationRef"
+      v-show="visible"
       class="me-notification"
       :class="{
         [`me-notification--${type}`]: type,
         'is-close': showClose,
       }"
-      v-show="visible"
       role="alert"
       :style="cssStyle"
-      ref="notificationRef"
       @mouseenter="clearTimer"
       @mouseleave="startTimer"
     >
       <Icon class="me-notification__icon" :icon="iconName" />
       <div class="me-notification__text">
-        <div class="notification__title">{{ title }}</div>
+        <div class="me-notification__title">{{ title }}</div>
         <div class="me-notification__content">
           <RenderVnode :v-node="message" />
         </div>
@@ -46,6 +46,7 @@ const props = withDefaults(defineProps<NotificationProps>(), {
   showClose: true,
 });
 
+/** 左侧图标 */
 const iconName = computed(() => {
   if (props.icon) {
     return props.icon;
@@ -64,9 +65,11 @@ const iconName = computed(() => {
   }
 });
 
+/** 是否显示 */
 const visible = ref(false);
 
 let timer: any;
+/** 弹窗关闭倒计时 */
 const startTimer = () => {
   if (props.duration === 0) {
     return;
@@ -75,9 +78,12 @@ const startTimer = () => {
     visible.value = false;
   }, props.duration);
 };
+/** 清楚倒计时 */
 const clearTimer = () => {
   clearTimeout(timer);
 };
+
+/** 支持 Esc 按键关闭弹窗 */
 const keydown = (e: Event) => {
   const event = e as KeyboardEvent;
   if (event.code === "Escape") {
@@ -86,21 +92,30 @@ const keydown = (e: Event) => {
 };
 useEventListener(document, "keydown", keydown);
 
-const notificationRef = ref<HTMLDivElement | null>(null);
+/**
+ * 每个 Notification 组件的位置 top 等于上一个组件的 bottom + offset
+ * 每个 Notification 组件的位置 bottom 等于该组件的 top + height
+ */
+const notificationRef = ref<HTMLElement | null>(null);
+/** 高度 */
 const height = ref(0);
+/** 上一个实例的 bottom，第一个是 0 */
 const lastOffset = computed(() => getLastBottomOffset(props.id));
+/** 该元素的 top */
 const topOffset = computed(() => lastOffset.value + props.offset);
+/** 该元素的 bottom */
 const bottomOffset = computed(() => topOffset.value + height.value);
 const cssStyle = computed(() => ({
   top: topOffset.value + "px",
   zIndex: props.zIndex,
 }));
 
+/** 更新高度 */
 const updateHeight = () => {
   height.value = notificationRef.value!.getBoundingClientRect().height;
 };
 
-const destoryComponent = () => {
+const destroyComponent = () => {
   props.onDestroy();
 };
 

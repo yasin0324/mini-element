@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { createMessage } from "./components/Message/method";
+import { createNotification } from "./components/Notification/method";
 
 onMounted(() => {
-  createMessage({ message: "hello,world", duration: 3000, showClose: true, type: "danger" });
-  createMessage({ message: "hello,world1", duration: 0 });
-  createMessage({ message: "hello,world2", duration: 0 });
+  createNotification({
+    title: "hello,world",
+    message: "hello wrold",
+    duration: 3000,
+    showClose: true,
+    type: "danger",
+  });
 });
 </script>
 
