@@ -44,12 +44,23 @@
 		margin-left: 12px;
 	}
 
-	&:hover,
-	&:focus {
+	&:hover {
 		color: var(--me-button-hover-text-color);
 		border-color: var(--me-button-hover-border-color);
 		background-color: var(--me-button-hover-bg-color);
 		outline: none;
+	}
+
+	&:focus {
+		outline: none;
+	}
+
+	&:focus-visible {
+		color: var(--me-button-hover-text-color);
+		border-color: var(--me-button-hover-border-color);
+		background-color: var(--me-button-hover-bg-color);
+		outline: 2px solid var(--me-button-outline-color);
+		outline-offset: 1px;
 	}
 
 	&:active {
