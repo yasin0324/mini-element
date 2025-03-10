@@ -15,6 +15,13 @@ export interface InputProps {
 
 export interface InputEmits {
   (e: "update:modelValue", value: string): void;
+  //   值发生变化
+  (e: "input", value: string): void;
+  //   值发生变化且失去焦点
+  (e: "change", value: string): void;
+  (e: "focus", value: FocusEvent): void;
+  (e: "blur", value: FocusEvent): void;
+  (e: "clear"): void;
 }
 
 export interface InputInstance {

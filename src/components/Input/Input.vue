@@ -26,8 +26,9 @@
           :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           :disabled="disabled"
           class="me-input__inner"
-          @input="handleInput"
           v-model="innerValue"
+          @input="handleInput"
+          @change="handleChange"
           @focus="handleFocus"
           @blur="handleBlur"
         />
@@ -59,8 +60,9 @@
       <textarea
         class="me-textarea__wrapper"
         :disabled="disabled"
-        @input="handleInput"
         v-model="innerValue"
+        @input="handleInput"
+        @change="handleChange"
         @focus="handleFocus"
         @blur="handleBlur"
       ></textarea>
@@ -98,17 +100,27 @@ const showPasswordArea = computed(
 
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
+  emits("input", innerValue.value);
 };
-const handleFocus = () => {
+const handleChange = () => {
+  emits("update:modelValue", innerValue.value);
+  emits("change", innerValue.value);
+};
+const handleFocus = (e: FocusEvent) => {
   isFocus.value = true;
+  emits("focus", e);
 };
-const handleBlur = () => {
+const handleBlur = (e: FocusEvent) => {
   isFocus.value = false;
+  emits("blur", e);
 };
 // 清除
 const clear = () => {
   innerValue.value = "";
-  emits("update:modelValue", innerValue.value);
+  emits("update:modelValue", "");
+  emits("input", "");
+  emits("change", "");
+  emits("clear");
 };
 // 密码图标点击
 const togglePasswordVisible = () => {
