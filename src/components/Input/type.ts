@@ -1,4 +1,6 @@
 export interface InputProps {
+  // 绑定值
+  modelValue: string;
   // 类型
   type?: string;
   //   输入框尺寸，只在type不是textarea时有效
@@ -12,11 +14,7 @@ export interface InputProps {
 }
 
 export interface InputEmits {
-  (e: "change", value: string): void;
-  (e: "input", value: string): void;
-  (e: "focus"): void;
-  (e: "blur"): void;
-  (e: "clear"): void;
+  (e: "update:modelValue", value: string): void;
 }
 
 export interface InputInstance {

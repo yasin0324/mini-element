@@ -17,14 +17,12 @@
       <div class="me-input__prepend" v-if="$slots.prepend">
         <slot name="prepend" />
       </div>
-
       <div class="me-input__wrapper">
         <!-- prefix slot -->
         <span class="me-input__prefix" v-if="$slots.prefix">
           <slot name="prefix" />
         </span>
-
-        <input :type="type" :disabled="disabled" class="me-input__inner" />
+        <input :type="type" :disabled="disabled" class="me-input__inner" @input="handleInput" />
         <!-- suffix slot -->
         <span class="me-input__suffix" v-if="$slots.suffix">
           <slot name="suffix"></slot>
@@ -37,13 +35,14 @@
     </template>
     <!-- textarea -->
     <template v-else>
-      <textarea class="me-textarea__wrapper" :disabled="disabled"></textarea>
+      <textarea class="me-textarea__wrapper" :disabled="disabled" @input="handleInput"></textarea>
     </template>
   </div>
 </template>
 
 <script setup lang="ts">
-import type { InputProps } from "./type";
+import type { InputProps, InputEmits } from "./type";
+import { ref, watch } from "vue";
 
 defineOptions({
   name: "meInput",
@@ -51,4 +50,18 @@ defineOptions({
 const props = withDefaults(defineProps<InputProps>(), {
   type: "text",
 });
+const emits = defineEmits<InputEmits>();
+
+const innerValue = ref(props.modelValue);
+
+const handleInput = () => {
+  emits("update:modelValue", innerValue.value);
+};
+
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    innerValue.value = newValue;
+  }
+);
 </script>
