@@ -11,6 +11,16 @@ export interface InputProps {
   clearable?: boolean;
   // 是否显示切换密码图标
   showPassword?: boolean;
+  //   输入框占位文本
+  placeholder?: string;
+  // 原生readonly属性，是否只读
+  readonly?: boolean;
+  //   原生autocomplete属性
+  autocomplete?: string;
+  //   原生属性，自动获取焦点
+  autofocus?: boolean;
+  //   原生属性
+  form?: string;
 }
 
 export interface InputEmits {

@@ -9,6 +9,7 @@
       'is-append': $slots.append,
       'is-prefix': $slots.prefix,
       'is-suffix': $slots.suffix,
+      'is-focus': isFocus,
     }"
   >
     <!-- input -->
@@ -25,8 +26,15 @@
         <input
           :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           :disabled="disabled"
+          :readonly="readonly"
+          :autocomplete="autocomplete"
+          :placeholder="placeholder"
+          :autofocus="autofocus"
+          :form="form"
           class="me-input__inner"
           v-model="innerValue"
+          v-bind="attrs"
+          ref="inputRef"
           @input="handleInput"
           @change="handleChange"
           @focus="handleFocus"
@@ -60,7 +68,14 @@
       <textarea
         class="me-textarea__wrapper"
         :disabled="disabled"
+        :readonly="readonly"
+        :autocomplete="autocomplete"
+        :placeholder="placeholder"
+        :autofocus="autofocus"
+        :form="form"
         v-model="innerValue"
+        v-bind="attrs"
+        ref="inputRef"
         @input="handleInput"
         @change="handleChange"
         @focus="handleFocus"
@@ -72,16 +87,21 @@
 
 <script setup lang="ts">
 import type { InputProps, InputEmits } from "./type";
-import { ref, watch, computed } from "vue";
+import { ref, watch, computed, useAttrs } from "vue";
 import Icon from "../Icon/Icon.vue";
 
 defineOptions({
   name: "meInput",
+  inheritAttrs: false,
 });
 const props = withDefaults(defineProps<InputProps>(), {
   type: "text",
+  autocomplete: "off",
 });
 const emits = defineEmits<InputEmits>();
+const attrs = useAttrs();
+
+const inputRef = ref<HTMLInputElement | null>(null);
 
 // 输入框的值
 const innerValue = ref(props.modelValue);
@@ -133,4 +153,8 @@ watch(
     innerValue.value = newValue;
   }
 );
+
+defineExpose({
+  ref: inputRef,
+});
 </script>
