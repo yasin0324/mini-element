@@ -23,7 +23,7 @@
           <slot name="prefix" />
         </span>
         <input
-          :type="type"
+          :type="showPassword ? (passwordVisible ? 'text' : 'password') : type"
           :disabled="disabled"
           class="me-input__inner"
           @input="handleInput"
@@ -32,9 +32,21 @@
           @blur="handleBlur"
         />
         <!-- suffix slot -->
-        <span class="me-input__suffix" v-if="$slots.suffix || showClear">
+        <span class="me-input__suffix" v-if="$slots.suffix || showClear || showPasswordArea">
           <slot name="suffix" />
           <Icon v-if="showClear" icon="circle-xmark" class="me-input__clear" @click="clear" />
+          <Icon
+            v-if="showPasswordArea && passwordVisible"
+            icon="eye"
+            class="me-input__password"
+            @click="togglePasswordVisible"
+          />
+          <Icon
+            v-if="showPasswordArea && !passwordVisible"
+            icon="eye-slash"
+            class="me-input__password"
+            @click="togglePasswordVisible"
+          />
         </span>
       </div>
       <!-- append slot -->
@@ -73,9 +85,15 @@ const emits = defineEmits<InputEmits>();
 const innerValue = ref(props.modelValue);
 // 是否聚焦
 const isFocus = ref(false);
-// 展示清楚按钮
+// 密码是否可见
+const passwordVisible = ref(false);
+// 展示清除按钮
 const showClear = computed(
-  () => props.clearable && !props.disabled && innerValue.value && isFocus.value
+  () => props.clearable && !props.disabled && !!innerValue.value && isFocus.value
+);
+// 展示密码切换图标
+const showPasswordArea = computed(
+  () => props.showPassword && !props.disabled && !!innerValue.value
 );
 
 const handleInput = () => {
@@ -91,6 +109,10 @@ const handleBlur = () => {
 const clear = () => {
   innerValue.value = "";
   emits("update:modelValue", innerValue.value);
+};
+// 密码图标点击
+const togglePasswordVisible = () => {
+  passwordVisible.value = !passwordVisible.value;
 };
 
 watch(
