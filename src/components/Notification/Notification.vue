@@ -96,7 +96,7 @@ useEventListener(document, "keydown", keydown);
  * 每个 Notification 组件的位置 top 等于上一个组件的 bottom + offset
  * 每个 Notification 组件的位置 bottom 等于该组件的 top + height
  */
-const notificationRef = ref<HTMLElement | null>(null);
+const notificationRef = ref<HTMLDivElement | null>(null);
 /** 高度 */
 const height = ref(0);
 /** 上一个实例的 bottom，第一个是 0 */
