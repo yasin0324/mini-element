@@ -1,6 +1,6 @@
 export interface SwitchProps {
   // 绑定值，必须等于active-value或inactive-value，默认为Boolean类型
-  modelValue: string;
+  modelValue: boolean;
   // switch大小
   size?: "small" | "large";
   //   是否禁用

@@ -6,6 +6,7 @@
       'is-disabled': disabled,
       'is-checked': checked,
     }"
+    @click="switchValue"
   >
     <input
       class="me-switch__input"
@@ -29,9 +30,19 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineOptions<SwitchProps>();
+const props = defineProps<SwitchProps>();
 const emits = defineEmits<SwitchEmits>();
 
 const innerValue = ref(props.modelValue);
+// 是否被选中
 const checked = computed(() => innerValue.value);
+// 切换
+const switchValue = () => {
+  if (props.disabled) {
+    return;
+  }
+  innerValue.value = !checked.value;
+  emits("change", innerValue.value);
+  emits("update:modelValue", innerValue.value);
+};
 </script>
