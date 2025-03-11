@@ -18,6 +18,11 @@
       @keydown.enter="switchValue"
     />
     <div class="me-switch__core">
+      <div class="me-switch__core-inner">
+        <span v-if="activeText || inactiveText" class="me-switch__core-inner-text">
+          {{ checked ? activeText : inactiveText }}
+        </span>
+      </div>
       <div class="me-switch__core-action"></div>
     </div>
   </div>
@@ -32,20 +37,24 @@ defineOptions({
   inheritAttrs: false,
 });
 
-const props = defineProps<SwitchProps>();
+const props = withDefaults(defineProps<SwitchProps>(), {
+  activeValue: true,
+  inactiveValue: false,
+});
 const emits = defineEmits<SwitchEmits>();
 
 const inputRef = ref<HTMLInputElement | null>(null);
 
 const innerValue = ref(props.modelValue);
 // 是否被选中
-const checked = computed(() => innerValue.value);
+const checked = computed(() => innerValue.value === props.activeValue);
 // 切换
 const switchValue = () => {
   if (props.disabled) {
     return;
   }
-  innerValue.value = !checked.value;
+  const newValue = checked.value ? props.inactiveValue : props.activeValue;
+  innerValue.value = newValue;
   emits("change", innerValue.value);
   emits("update:modelValue", innerValue.value);
 };
