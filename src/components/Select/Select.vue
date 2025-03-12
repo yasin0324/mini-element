@@ -38,6 +38,12 @@
         </template>
       </Input>
       <template #content>
+        <div class="me-select__loading" v-if="state.loading">
+          <Icon icon="spinner" spin />
+        </div>
+        <div class="me-select__nodata" v-else-if="filterable && !filterOptions.length">
+          no matching data
+        </div>
         <ul class="me-select__menu">
           <template v-for="(item, index) in filterOptions" :key="index">
             <li
@@ -73,7 +79,9 @@ defineOptions({
   name: "meSelect",
 });
 
-const props = defineProps<SelectProps>();
+const props = withDefaults(defineProps<SelectProps>(), {
+  options: () => [],
+});
 const emits = defineEmits<SelectEmits>();
 
 // 菜单是否打开
@@ -92,6 +100,7 @@ const state: SelectStates = reactive({
   inputValue: initialOption.value?.label || "",
   selectedOption: initialOption.value,
   mouseHover: false,
+  loading: false,
 });
 
 // 展示清除anniu
@@ -131,12 +140,22 @@ const filteredPlaceholder = computed(() =>
 // 菜单项
 const filterOptions = ref(props.options);
 // 根据输入框的值筛选
-const generateFilterOptions = (searchValue: string) => {
+const generateFilterOptions = async (searchValue: string) => {
   if (!props.filterable) {
     return;
   }
   if (props.filterMethod && isFunction(props.filterMethod)) {
     filterOptions.value = props.filterMethod(searchValue);
+  } else if (props.remote && props.remoteMethod && isFunction(props.remoteMethod)) {
+    state.loading = true;
+    try {
+      filterOptions.value = await props.remoteMethod(searchValue);
+    } catch (error) {
+      console.log(error);
+      filterOptions.value = [];
+    } finally {
+      state.loading = false;
+    }
   } else {
     filterOptions.value = props.options.filter((option) => option.label.includes(searchValue));
   }
