@@ -1,6 +1,6 @@
 <template>
   <div class="me-select" :class="{ 'is-disabled': disabled }" @click="toggleDropdown">
-    <Tooltip placement="bottom-start" manual ref="tooltipRef">
+    <Tooltip placement="bottom-start" manual ref="tooltipRef" :popper-options="popperOptions">
       <Input v-model="state.inputValue" :placeholder="placeholder" :disabled="disabled" />
       <template #content>
         <ul class="me-select__menu">
@@ -53,11 +53,31 @@ const state: SelectState = reactive({
   selectedOption: initialOption.value,
 });
 
+// popper设置
+const popperOptions: any = {
+  modifiers: [
+    {
+      name: "offset",
+      options: {
+        offset: [0, 9],
+      },
+    },
+    {
+      name: "sameWidth",
+      enabled: true,
+      fn: ({ state }: { state: any }) => {
+        state.styles.popper.width = `${state.rects.reference.width}px`;
+      },
+      phase: "beforeWrite",
+      requires: ["computeStyles"],
+    },
+  ],
+};
+
 const controlDropdown = (show: boolean) => {
   if (show) {
     tooltipRef.value?.show();
   } else {
-    console.log(tooltipRef.value);
     tooltipRef.value?.hide();
   }
   isDropdownShow.value = show;
