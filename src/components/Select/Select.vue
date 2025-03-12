@@ -1,7 +1,22 @@
 <template>
   <div class="me-select" :class="{ 'is-disabled': disabled }" @click="toggleDropdown">
-    <Tooltip placement="bottom-start" manual ref="tooltipRef" :popper-options="popperOptions">
-      <Input v-model="state.inputValue" :placeholder="placeholder" :disabled="disabled" />
+    <Tooltip
+      placement="bottom-start"
+      manual
+      ref="tooltipRef"
+      :popper-options="popperOptions"
+      @click-outside="controlDropdown(false)"
+    >
+      <Input
+        v-model="state.inputValue"
+        ref="inputRef"
+        :placeholder="placeholder"
+        :disabled="disabled"
+      >
+        <template #suffix>
+          <Icon icon="angle-down" class="header-angle" :class="{ 'is-active': isDropdownShow }" />
+        </template>
+      </Input>
       <template #content>
         <ul class="me-select__menu">
           <template v-for="(item, index) in options" :key="index">
@@ -26,9 +41,11 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from "vue";
 import Input from "../Input/Input.vue";
+import { type InputInstance } from "../Input/type";
 import Tooltip from "../Tooltip/Tooltip.vue";
 import { type TooltipInstance } from "../Tooltip/types";
 import type { SelectProps, SelectEmits, SelectOption, SelectState } from "./types";
+import Icon from "../Icon/Icon.vue";
 
 defineOptions({
   name: "meSelect",
@@ -40,6 +57,7 @@ const emits = defineEmits<SelectEmits>();
 // 菜单是否打开
 const isDropdownShow = ref(false);
 const tooltipRef = ref<TooltipInstance | null>(null);
+const inputRef = ref<InputInstance | null>(null);
 
 // 根据modelValue找到初始的option
 const initialOption = computed(() => {
@@ -106,5 +124,6 @@ const itemClick = (item: SelectOption) => {
   emits("change", item.value);
   emits("update:modelValue", item.value);
   controlDropdown(false);
+  inputRef.value?.ref?.focus();
 };
 </script>
