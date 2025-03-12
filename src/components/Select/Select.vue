@@ -19,7 +19,7 @@
         :placeholder="filteredPlaceholder"
         :disabled="disabled"
         :readonly="!filterable || !isDropdownShow"
-        @input="onFilter"
+        @input="debounceFilter"
       >
         <template #suffix>
           <Icon
@@ -73,7 +73,7 @@ import { type TooltipInstance } from "../Tooltip/types";
 import type { SelectProps, SelectEmits, SelectOption, SelectStates } from "./types";
 import Icon from "../Icon/Icon.vue";
 import RenderVnode from "../Common/RenderVnode";
-import { isFunction } from "lodash-es";
+import { debounce, isFunction } from "lodash-es";
 
 defineOptions({
   name: "meSelect",
@@ -88,6 +88,8 @@ const emits = defineEmits<SelectEmits>();
 const isDropdownShow = ref(false);
 const tooltipRef = ref<TooltipInstance | null>(null);
 const inputRef = ref<InputInstance | null>(null);
+
+const timeout = computed(() => (props.remote ? 300 : 0));
 
 // 根据modelValue找到初始的option
 const initialOption = computed(() => {
@@ -163,6 +165,9 @@ const generateFilterOptions = async (searchValue: string) => {
 const onFilter = () => {
   generateFilterOptions(state.inputValue);
 };
+const debounceFilter = debounce(() => {
+  onFilter();
+}, timeout.value);
 
 const controlDropdown = (show: boolean) => {
   if (show) {
