@@ -30,7 +30,7 @@
 
 <script setup lang="ts">
 import { computed, ref, onMounted, watch } from "vue";
-import type { SwitchProps, SwitchEmits } from "./type";
+import type { SwitchProps, SwitchEmits } from "./types";
 
 defineOptions({
   name: "meSwitch",

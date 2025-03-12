@@ -16,8 +16,10 @@
       <Input
         v-model="state.inputValue"
         ref="inputRef"
-        :placeholder="placeholder"
+        :placeholder="filteredPlaceholder"
         :disabled="disabled"
+        :readonly="!filterable || !isDropdownShow"
+        @input="onFilter"
       >
         <template #suffix>
           <Icon
@@ -37,7 +39,7 @@
       </Input>
       <template #content>
         <ul class="me-select__menu">
-          <template v-for="(item, index) in options" :key="index">
+          <template v-for="(item, index) in filterOptions" :key="index">
             <li
               class="me-select__menu-item"
               :class="{
@@ -47,7 +49,7 @@
               :id="`select-item-${item.value}`"
               @click.stop="itemClick(item)"
             >
-              {{ item.label }}
+              <RenderVnode :vNode="renderLabel ? renderLabel(item) : item.label" />
             </li>
           </template>
         </ul>
@@ -59,11 +61,13 @@
 <script setup lang="ts">
 import { ref, reactive, computed, watch } from "vue";
 import Input from "../Input/Input.vue";
-import { type InputInstance } from "../Input/type";
+import { type InputInstance } from "../Input/types";
 import Tooltip from "../Tooltip/Tooltip.vue";
 import { type TooltipInstance } from "../Tooltip/types";
 import type { SelectProps, SelectEmits, SelectOption, SelectStates } from "./types";
 import Icon from "../Icon/Icon.vue";
+import RenderVnode from "../Common/RenderVnode";
+import { isFunction } from "lodash-es";
 
 defineOptions({
   name: "meSelect",
@@ -116,10 +120,45 @@ const popperOptions: any = {
   ],
 };
 
+// placeholder
+// filter模式下的placeholder为选中的label
+const filteredPlaceholder = computed(() =>
+  props.filterable && state.selectedOption && isDropdownShow.value
+    ? state.selectedOption.label
+    : props.placeholder
+);
+
+// 菜单项
+const filterOptions = ref(props.options);
+// 根据输入框的值筛选
+const generateFilterOptions = (searchValue: string) => {
+  if (!props.filterable) {
+    return;
+  }
+  if (props.filterMethod && isFunction(props.filterMethod)) {
+    filterOptions.value = props.filterMethod(searchValue);
+  } else {
+    filterOptions.value = props.options.filter((option) => option.label.includes(searchValue));
+  }
+};
+const onFilter = () => {
+  generateFilterOptions(state.inputValue);
+};
+
 const controlDropdown = (show: boolean) => {
   if (show) {
+    // filter模式下之前选择过对应的值每次点击都会重置
+    if (props.filterable && state.selectedOption) {
+      state.inputValue = "";
+    }
+    if (props.filterable) {
+      generateFilterOptions(state.inputValue);
+    }
     tooltipRef.value?.show();
   } else {
+    if (props.filterable) {
+      state.inputValue = state.selectedOption ? state.selectedOption.label : "";
+    }
     tooltipRef.value?.hide();
   }
   isDropdownShow.value = show;
@@ -160,4 +199,11 @@ const clear = () => {
   emits("clear");
 };
 const NOOP = () => {};
+
+watch(
+  () => props.options,
+  (newVal) => {
+    filterOptions.value = newVal;
+  }
+);
 </script>

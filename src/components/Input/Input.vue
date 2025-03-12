@@ -96,7 +96,7 @@
 </template>
 
 <script setup lang="ts">
-import type { InputProps, InputEmits, InputInstance } from "./type";
+import type { InputProps, InputEmits, InputInstance } from "./types";
 import { ref, watch, computed, useAttrs } from "vue";
 import Icon from "../Icon/Icon.vue";
 
