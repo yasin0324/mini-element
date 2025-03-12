@@ -1,14 +1,18 @@
 <template>
   <div class="me-select" :class="{ 'is-disabled': disabled }" @click="toggleDropdown">
     <Tooltip placement="bottom-start" manual ref="tooltipRef">
-      <Input v-model="innerValue" :placeholder="placeholder" :disabled="disabled" />
+      <Input v-model="state.inputValue" :placeholder="placeholder" :disabled="disabled" />
       <template #content>
         <ul class="me-select__menu">
           <template v-for="(item, index) in options" :key="index">
             <li
               class="me-select__menu-item"
-              :class="{ 'is-disabled': item.disabled }"
+              :class="{
+                'is-selected': state.selectedOption?.value === item.value,
+                'is-disabled': item.disabled,
+              }"
               :id="`select-item-${item.value}`"
+              @click.stop="itemClick(item)"
             >
               {{ item.label }}
             </li>
@@ -20,11 +24,11 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive, computed } from "vue";
 import Input from "../Input/Input.vue";
 import Tooltip from "../Tooltip/Tooltip.vue";
 import { type TooltipInstance } from "../Tooltip/types";
-import type { SelectProps, SelectEmits } from "./types";
+import type { SelectProps, SelectEmits, SelectOption, SelectState } from "./types";
 
 defineOptions({
   name: "meSelect",
@@ -33,10 +37,21 @@ defineOptions({
 const props = defineProps<SelectProps>();
 const emits = defineEmits<SelectEmits>();
 
-const innerValue = ref("");
 // 菜单是否打开
 const isDropdownShow = ref(false);
 const tooltipRef = ref<TooltipInstance | null>(null);
+
+// 根据modelValue找到初始的option
+const initialOption = computed(() => {
+  const option = props.options.find((option) => option.value === props.modelValue);
+  return option || null;
+});
+
+// input的值和选中的option
+const state: SelectState = reactive({
+  inputValue: initialOption.value?.label || "",
+  selectedOption: initialOption.value,
+});
 
 const controlDropdown = (show: boolean) => {
   if (show) {
@@ -59,5 +74,17 @@ const toggleDropdown = () => {
   } else {
     controlDropdown(true);
   }
+};
+
+// 点击菜单项
+const itemClick = (item: SelectOption) => {
+  if (item.disabled) {
+    return;
+  }
+  state.inputValue = item.label;
+  state.selectedOption = item;
+  emits("change", item.value);
+  emits("update:modelValue", item.value);
+  controlDropdown(false);
 };
 </script>
