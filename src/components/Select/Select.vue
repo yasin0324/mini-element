@@ -1,5 +1,11 @@
 <template>
-  <div class="me-select" :class="{ 'is-disabled': disabled }" @click="toggleDropdown">
+  <div
+    class="me-select"
+    :class="{ 'is-disabled': disabled }"
+    @click="toggleDropdown"
+    @mouseenter="state.mouseHover = true"
+    @mouseleave="state.mouseHover = false"
+  >
     <Tooltip
       placement="bottom-start"
       manual
@@ -14,7 +20,19 @@
         :disabled="disabled"
       >
         <template #suffix>
-          <Icon icon="angle-down" class="header-angle" :class="{ 'is-active': isDropdownShow }" />
+          <Icon
+            icon="circle-xmark"
+            v-if="showClearIcon"
+            class="me-input__clear"
+            @click.stop="clear"
+            @mousedown.prevent="NOOP"
+          />
+          <Icon
+            v-else
+            icon="angle-down"
+            class="header-angle"
+            :class="{ 'is-active': isDropdownShow }"
+          />
         </template>
       </Input>
       <template #content>
@@ -39,12 +57,12 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, computed } from "vue";
+import { ref, reactive, computed, watch } from "vue";
 import Input from "../Input/Input.vue";
 import { type InputInstance } from "../Input/type";
 import Tooltip from "../Tooltip/Tooltip.vue";
 import { type TooltipInstance } from "../Tooltip/types";
-import type { SelectProps, SelectEmits, SelectOption, SelectState } from "./types";
+import type { SelectProps, SelectEmits, SelectOption, SelectStates } from "./types";
 import Icon from "../Icon/Icon.vue";
 
 defineOptions({
@@ -66,10 +84,16 @@ const initialOption = computed(() => {
 });
 
 // input的值和选中的option
-const state: SelectState = reactive({
+const state: SelectStates = reactive({
   inputValue: initialOption.value?.label || "",
   selectedOption: initialOption.value,
+  mouseHover: false,
 });
+
+// 展示清除anniu
+const showClearIcon = computed(
+  () => props.clearable && state.mouseHover && state.selectedOption && state.inputValue.trim()
+);
 
 // popper设置
 const popperOptions: any = {
@@ -126,4 +150,14 @@ const itemClick = (item: SelectOption) => {
   controlDropdown(false);
   inputRef.value?.ref?.focus();
 };
+
+// 清空
+const clear = () => {
+  state.inputValue = "";
+  state.selectedOption = null;
+  emits("change", "");
+  emits("update:modelValue", "");
+  emits("clear");
+};
+const NOOP = () => {};
 </script>
