@@ -1,6 +1,6 @@
-<script setup lang="ts">
+<scrpt setup lang="ts">
 import Switch from "./components/Switch/Switch.vue";
-</script>
+</scrpt>
 
 <template>
   <Switch v-model="text"></Switch>
