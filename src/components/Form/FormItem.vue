@@ -26,7 +26,7 @@ import {
   type FormItemProps,
   type validateError,
 } from "./types";
-import { computed, inject, reactive, provide } from "vue";
+import { computed, inject, reactive, provide, onMounted, onUnmounted } from "vue";
 import { isNil } from "lodash-es";
 import Schema from "async-validator";
 
@@ -104,6 +104,19 @@ const validate = (trigger?: string) => {
       });
   }
 };
+const context = {
+  validate,
+  prop: props.prop || "",
+};
+provide(formItemContextKey, context);
 
-provide(formItemContextKey, { validate });
+onMounted(() => {
+  if (props.prop) {
+    formContext?.addField(context);
+  }
+});
+
+onUnmounted(() => {
+  formContext?.removeField(context);
+});
 </script>
