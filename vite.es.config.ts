@@ -14,6 +14,7 @@ export default defineConfig({
     vueDevTools(),
     dts({
       tsconfigPath: "./tsconfig.build.json",
+      outDir: "dist/types",
     }),
   ],
   resolve: {
@@ -23,18 +24,23 @@ export default defineConfig({
   },
   // 打包配置
   build: {
+    outDir: "dist/es",
     lib: {
       entry: resolve(__dirname, "src/index.ts"),
       name: "meElement",
       fileName: "mini-element",
+      formats: ["es"],
     },
     rollupOptions: {
-      external: ["vue", "@fortawesome/fontawesome-svg-core", "@fortawesome/free-solid-svg-icons"],
+      external: [
+        "vue",
+        "@fortawesome/fontawesome-svg-core",
+        "@fortawesome/free-solid-svg-icons",
+        "@fortawesome/vue-fontawesome",
+        "@popperjs/core",
+      ],
       output: {
         exports: "named",
-        globals: {
-          vue: "Vue",
-        },
       },
     },
   },
