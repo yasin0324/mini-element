@@ -77,6 +77,11 @@ import Icon from "../Icon/Icon.vue";
 import RenderVnode from "../Common/RenderVnode";
 import { debounce, isFunction } from "lodash-es";
 
+const findOption = (value: string) => {
+  const option = props.options.find((option) => option.value === value);
+  return option ? option : null;
+};
+
 defineOptions({
   name: "meSelect",
 });
@@ -94,10 +99,14 @@ const inputRef = ref<InputInstance | null>(null);
 const timeout = computed(() => (props.remote ? 300 : 0));
 
 // 根据modelValue找到初始的option
-const initialOption = computed(() => {
-  const option = props.options.find((option) => option.value === props.modelValue);
-  return option || null;
-});
+const initialOption = ref(findOption(props.modelValue));
+watch(
+  () => props.modelValue,
+  (newValue) => {
+    initialOption.value = findOption(newValue);
+    state.inputValue = initialOption.value?.label || "";
+  }
+);
 
 // input的值和选中的option
 const state: SelectStates = reactive({

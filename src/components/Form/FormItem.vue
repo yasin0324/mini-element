@@ -26,6 +26,8 @@ import {
   formItemContextKey,
   type FormItemProps,
   type FormValidateError,
+  type FormItemInstance,
+  type ValidateStatusProp,
 } from "./types";
 import { computed, inject, reactive, provide, onMounted, onUnmounted } from "vue";
 import { isNil } from "lodash-es";
@@ -39,7 +41,7 @@ const props = defineProps<FormItemProps>();
 
 const formContext = inject(formContextKey);
 
-const validateStatus = reactive({
+const validateStatus: ValidateStatusProp = reactive({
   state: "init",
   errorMsg: "",
   loading: false,
@@ -84,7 +86,7 @@ const getTriggeredRules = (trigger?: string) => {
 };
 
 // 规则校验
-const validate = (trigger?: string) => {
+const validate = async (trigger?: string) => {
   const modelName = props.prop;
   const triggeredRules = getTriggeredRules(trigger);
   if (triggeredRules.length === 0) {
@@ -144,5 +146,12 @@ onMounted(() => {
 
 onUnmounted(() => {
   formContext?.removeField(context);
+});
+
+defineExpose<FormItemInstance>({
+  validateStatus,
+  validate,
+  clearValidate,
+  resetField,
 });
 </script>

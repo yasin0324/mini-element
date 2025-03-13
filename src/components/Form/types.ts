@@ -7,12 +7,18 @@ export interface FormItemRule extends RuleItem {
 export type FormRules = Record<string, FormItemRule[]>;
 export interface FormProps {
   model: Record<string, any>;
-  rules: FormRules;
+  rules?: FormRules;
 }
 
 export interface FormItemProps {
-  label: string;
+  label?: string;
   prop?: string;
+}
+
+export interface ValidateStatusProp {
+  state: "init" | "success" | "error";
+  errorMsg: string;
+  loading: boolean;
 }
 
 export interface FormContext extends FormProps {
@@ -21,7 +27,7 @@ export interface FormContext extends FormProps {
 }
 export interface FormItemContext {
   prop: string;
-  validate: (trigger?: string) => any;
+  validate: (trigger?: string) => Promise<any>;
   clearValidate(): void;
   resetField(): void;
 }
@@ -39,4 +45,11 @@ export interface FormInstance {
   validate: () => Promise<any>;
   resetFields: (props?: string[]) => void;
   clearValidate: (props?: string[]) => void;
+}
+
+export interface FormItemInstance {
+  validateStatus: ValidateStatusProp;
+  validate: (trigger?: string) => Promise<any>;
+  clearValidate(): void;
+  resetField(): void;
 }
