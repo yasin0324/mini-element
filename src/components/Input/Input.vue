@@ -97,8 +97,9 @@
 
 <script setup lang="ts">
 import type { InputProps, InputEmits, InputInstance } from "./types";
-import { ref, watch, computed, useAttrs } from "vue";
+import { ref, watch, computed, useAttrs, inject } from "vue";
 import Icon from "../Icon/Icon.vue";
+import { formItemContextKey } from "../Form/types";
 
 defineOptions({
   name: "meInput",
@@ -128,6 +129,13 @@ const showPasswordArea = computed(
   () => props.showPassword && !props.disabled && !!innerValue.value
 );
 
+const formItemContext = inject(formItemContextKey);
+
+// 校验
+const runValidation = () => {
+  formItemContext?.validate();
+};
+
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
@@ -143,6 +151,7 @@ const handleFocus = (e: FocusEvent) => {
 const handleBlur = (e: FocusEvent) => {
   isFocus.value = false;
   emits("blur", e);
+  runValidation();
 };
 const keepFocus = () => {
   inputRef.value?.focus();

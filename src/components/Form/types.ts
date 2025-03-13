@@ -13,8 +13,13 @@ export interface FormItemProps {
 }
 
 interface FormContext extends FormProps {}
+interface FormItemContext {
+  validate: () => any;
+}
 
 export const formContextKey = Symbol("formContextKey") as InjectionKey<FormContext>;
+
+export const formItemContextKey = Symbol("formItemContextKey") as InjectionKey<FormItemContext>;
 
 export interface validateError {
   errors: ValidateError[] | null;
