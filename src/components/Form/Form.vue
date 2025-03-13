@@ -5,11 +5,14 @@
 </template>
 
 <script setup lang="ts">
-import type { FormProps } from "./types";
+import { formContextKey, type FormProps } from "./types";
+import { provide } from "vue";
 
 defineOptions({
   name: "meForm",
 });
 
-defineProps<FormProps>();
+const props = defineProps<FormProps>();
+
+provide(formContextKey, props);
 </script>
