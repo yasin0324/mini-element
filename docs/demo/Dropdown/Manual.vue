@@ -1,21 +1,19 @@
 <template>
   <div class="manual block">
-    <Button @click="showDropdown">显示下拉菜单</Button>
-    <Button @click="hideDropdown" style="margin-left: 10px">隐藏下拉菜单</Button>
+    <me-button @click="showme-dropdown">显示下拉菜单</me-button>
+    <me-button @click="hideme-dropdown" style="margin-left: 10px">隐藏下拉菜单</me-button>
     <div style="margin-top: 10px">
-      <Dropdown :menuOptions="options" manual ref="dropdownRef">
-        <Button>手动控制的下拉菜单</Button>
-      </Dropdown>
+      <me-dropdown :menuOptions="options" manual ref="me-dropdownRef">
+        <me-button>手动控制的下拉菜单</me-button>
+      </me-dropdown>
     </div>
   </div>
 </template>
 
 <script setup>
-import Button from "@/components/Button/Button.vue";
-import Dropdown from "@/components/Dropdown/Dropdown.vue";
 import { ref } from "vue";
 
-const dropdownRef = ref(null);
+const me-dropdownRef = ref(null);
 const options = ref([
   {
     label: "选项1",
@@ -31,12 +29,12 @@ const options = ref([
   }
 ]);
 
-const showDropdown = () => {
-  dropdownRef.value?.show();
+const showme-dropdown = () => {
+  me-dropdownRef.value?.show();
 };
 
-const hideDropdown = () => {
-  dropdownRef.value?.hide();
+const hideme-dropdown = () => {
+  me-dropdownRef.value?.hide();
 };
 </script>
 

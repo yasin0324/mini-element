@@ -1,29 +1,27 @@
 <template>
   <div class="icon block">
-    <div class="prefix-icon" style="margin-bottom: 15px;">
-      <Input v-model="input1" placeholder="请输入内容">
+    <div class="prefix-icon" style="margin-bottom: 15px">
+      <me-input v-model="input1" placeholder="请输入内容">
         <template #prefix>
-          <Icon icon="search" />
+          <me-icon icon="search" />
         </template>
-      </Input>
+      </me-input>
     </div>
     <div class="suffix-icon">
-      <Input v-model="input2" placeholder="请输入内容">
+      <me-input v-model="input2" placeholder="请输入内容">
         <template #suffix>
-          <Icon icon="calendar" />
+          <me-icon icon="calendar" />
         </template>
-      </Input>
+      </me-input>
     </div>
   </div>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import Input from "@/components/Input/Input.vue";
-import Icon from "@/components/Icon/Icon.vue";
+import { ref } from "vue";
 
-const input1 = ref('');
-const input2 = ref('');
+const input1 = ref("");
+const input2 = ref("");
 </script>
 
 <style>

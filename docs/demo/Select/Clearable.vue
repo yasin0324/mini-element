@@ -1,12 +1,11 @@
 <template>
   <div class="clearable block">
-    <Select v-model="selected" :options="options" placeholder="请选择" clearable />
+    <me-select v-model="selected" :options="options" placeholder="请选择" clearable />
     <div class="selected-value">当前选中值: {{ selected }}</div>
   </div>
 </template>
 
 <script setup>
-import Select from "@/components/Select/Select.vue";
 import { ref } from "vue";
 
 const selected = ref("1");

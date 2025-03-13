@@ -1,14 +1,12 @@
 <template>
   <div class="basic block">
-    <Dropdown :menuOptions="options">
-      <Button>点击下拉菜单</Button>
-    </Dropdown>
+    <me-dropdown :menuOptions="options">
+      <me-button>点击下拉菜单</me-button>
+    </me-dropdown>
   </div>
 </template>
 
 <script setup>
-import Button from "@/components/Button/Button.vue";
-import Dropdown from "@/components/Dropdown/Dropdown.vue";
 import { ref } from "vue";
 
 const options = ref([

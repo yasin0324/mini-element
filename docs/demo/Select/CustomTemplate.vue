@@ -1,15 +1,13 @@
 <template>
   <div class="custom-template block">
-    <Select v-model="selected" :options="options" placeholder="请选择" :renderLabel="renderLabel" />
+    <me-select v-model="selected" :options="options" placeholder="请选择" :renderLabel="renderLabel" />
     <div class="selected-value">当前选中值: {{ selected }}</div>
     <div class="template-info">自定义模板：为每个选项添加图标和样式</div>
   </div>
 </template>
 
 <script setup>
-import Select from "@/components/Select/Select.vue";
 import { ref, h } from "vue";
-import Icon from "@/components/Icon/Icon.vue";
 
 const selected = ref("");
 const options = ref([
@@ -38,7 +36,7 @@ const options = ref([
 // 自定义渲染函数
 const renderLabel = (option) => {
   return h('div', { class: 'custom-option' }, [
-    h(Icon, { icon: option.icon, class: `icon-${option.value}` }),
+    h(me-icon, { icon: option.icon, class: `icon-${option.value}` }),
     h('span', { class: 'option-label' }, option.label)
   ]);
 };

@@ -1,5 +1,5 @@
 <template>
-  <Select
+  <me-select
     v-model="test"
     placeholder="搜索远程结果"
     filterable
@@ -12,7 +12,6 @@
 
 <script setup>
 import { ref } from "vue";
-import Select from "@/components/Select/Select.vue";
 
 const test = ref("");
 

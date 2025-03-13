@@ -1,25 +1,20 @@
 <template>
   <div class="custom-content block">
     <div class="row">
-      <Tooltip trigger="click">
-        <Button>点击查看自定义内容</Button>
+      <me-tooltip trigger="click">
+        <me-button>点击查看自定义内容</me-button>
         <template #content>
           <div class="custom-tooltip-content">
             <h4>自定义标题</h4>
             <p>这是一段自定义内容，可以包含任意HTML元素</p>
             <div class="divider"></div>
-            <Button size="small" type="primary">操作按钮</Button>
+            <me-button size="small" type="primary">操作按钮</me-button>
           </div>
         </template>
-      </Tooltip>
+      </me-tooltip>
     </div>
   </div>
 </template>
-
-<script setup>
-import Button from "@/components/Button/Button.vue";
-import Tooltip from "@/components/Tooltip/Tooltip.vue";
-</script>
 
 <style>
 .block {

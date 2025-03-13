@@ -1,16 +1,15 @@
 <template>
   <div class="duration block">
     <div class="demo-button">
-      <Button @click="open1">显示 3 秒</Button>
-      <Button @click="open2">显示 5 秒</Button>
-      <Button @click="open3">永久显示</Button>
+      <me-button @click="open1">显示 3 秒</me-button>
+      <me-button @click="open2">显示 5 秒</me-button>
+      <me-button @click="open3">永久显示</me-button>
     </div>
   </div>
 </template>
 
 <script setup>
 import { createMessage } from "@/components/Message/method.ts";
-import Button from "@/components/Button/Button.vue";
 
 const open1 = () => {
   createMessage({

@@ -1,15 +1,14 @@
 <template>
   <div class="closable block">
     <div class="demo-button">
-      <Button @click="open1">默认带关闭按钮</Button>
-      <Button @click="open2">不显示关闭按钮</Button>
+      <me-button @click="open1">默认带关闭按钮</me-button>
+      <me-button @click="open2">不显示关闭按钮</me-button>
     </div>
   </div>
 </template>
 
 <script setup>
 import { createNotification } from "@/components/Notification/method.ts";
-import Button from "@/components/Button/Button.vue";
 
 const open1 = () => {
   createNotification({

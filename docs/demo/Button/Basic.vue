@@ -1,35 +1,31 @@
 <template>
   <div class="basic block">
-    <Button>hello</Button>
-    <Button type="primary">Primary</Button>
-    <Button type="success">Success</Button>
-    <Button type="warning">Warning</Button>
-    <Button type="danger">Danger</Button>
-    <Button type="info">Info</Button>
+    <me-button>hello</me-button>
+    <me-button type="primary">Primary</me-button>
+    <me-button type="success">Success</me-button>
+    <me-button type="warning">Warning</me-button>
+    <me-button type="danger">Danger</me-button>
+    <me-button type="info">Info</me-button>
   </div>
 
   <div class="plain block">
-    <Button plain>hello</Button>
-    <Button type="primary" plain>Primary</Button>
-    <Button type="success" plain>Success</Button>
-    <Button type="warning" plain>Warning</Button>
-    <Button type="danger" plain>Danger</Button>
-    <Button type="info" plain>Info</Button>
+    <me-button plain>hello</me-button>
+    <me-button type="primary" plain>Primary</me-button>
+    <me-button type="success" plain>Success</me-button>
+    <me-button type="warning" plain>Warning</me-button>
+    <me-button type="danger" plain>Danger</me-button>
+    <me-button type="info" plain>Info</me-button>
   </div>
 
   <div class="round">
-    <Button round>hello</Button>
-    <Button type="primary" round>Primary</Button>
-    <Button type="success" round>Success</Button>
-    <Button type="warning" round>Warning</Button>
-    <Button type="danger" round>Danger</Button>
-    <Button type="info" round>Info</Button>
+    <me-button round>hello</me-button>
+    <me-button type="primary" round>Primary</me-button>
+    <me-button type="success" round>Success</me-button>
+    <me-button type="warning" round>Warning</me-button>
+    <me-button type="danger" round>Danger</me-button>
+    <me-button type="info" round>Info</me-button>
   </div>
 </template>
-
-<script setup>
-import Button from "@/components/Button/Button.vue";
-</script>
 
 <style>
 .block {

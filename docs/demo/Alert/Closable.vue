@@ -1,16 +1,12 @@
 <template>
   <div class="closable block">
-    <Alert closable>closable alert</Alert>
+    <me-alert closable>closable me-alert</me-alert>
   </div>
 
   <div class="non-closable block">
-    <Alert :closable="false">non-closeable alert</Alert>
+    <me-alert :closable="false">non-closeable me-alert</me-alert>
   </div>
 </template>
-
-<script setup>
-import Alert from "@/components/Alert/Alert.vue";
-</script>
 
 <style>
 .block {

@@ -1,19 +1,17 @@
 <template>
   <div class="hide-after-click block">
     <div class="row">
-      <Dropdown :menuOptions="options" :hideAfterClick="true">
-        <Button>点击后隐藏（默认）</Button>
-      </Dropdown>
-      <Dropdown :menuOptions="options" :hideAfterClick="false">
-        <Button>点击后不隐藏</Button>
-      </Dropdown>
+      <me-dropdown :menuOptions="options" :hideAfterClick="true">
+        <me-button>点击后隐藏（默认）</me-button>
+      </me-dropdown>
+      <me-dropdown :menuOptions="options" :hideAfterClick="false">
+        <me-button>点击后不隐藏</me-button>
+      </me-dropdown>
     </div>
   </div>
 </template>
 
 <script setup>
-import Button from "@/components/Button/Button.vue";
-import Dropdown from "@/components/Dropdown/Dropdown.vue";
 import { ref } from "vue";
 
 const options = ref([

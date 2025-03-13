@@ -1,17 +1,16 @@
 <template>
   <div class="types block">
     <div class="demo-button">
-      <Button @click="open1">成功</Button>
-      <Button @click="open2">警告</Button>
-      <Button @click="open3">消息</Button>
-      <Button @click="open4">错误</Button>
+      <me-button @click="open1">成功</me-button>
+      <me-button @click="open2">警告</me-button>
+      <me-button @click="open3">消息</me-button>
+      <me-button @click="open4">错误</me-button>
     </div>
   </div>
 </template>
 
 <script setup>
 import { createNotification } from "@/components/Notification/method.ts";
-import Button from "@/components/Button/Button.vue";
 
 const open1 = () => {
   createNotification({

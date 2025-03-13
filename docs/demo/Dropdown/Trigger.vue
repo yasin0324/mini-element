@@ -1,19 +1,17 @@
 <template>
   <div class="trigger block">
     <div class="row">
-      <Dropdown :menuOptions="options" trigger="hover">
-        <Button>Hover触发</Button>
-      </Dropdown>
-      <Dropdown :menuOptions="options" trigger="click">
-        <Button>Click触发</Button>
-      </Dropdown>
+      <me-dropdown :menuOptions="options" trigger="hover">
+        <me-button>Hover触发</me-button>
+      </me-dropdown>
+      <me-dropdown :menuOptions="options" trigger="click">
+        <me-button>Click触发</me-button>
+      </me-dropdown>
     </div>
   </div>
 </template>
 
 <script setup>
-import Button from "@/components/Button/Button.vue";
-import Dropdown from "@/components/Dropdown/Dropdown.vue";
 import { ref } from "vue";
 
 const options = ref([

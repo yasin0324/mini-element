@@ -1,11 +1,7 @@
 <template>
   <div>
-    <Button size="small">Small</Button>
-    <Button>Default</Button>
-    <Button size="large">Large</Button>
+    <me-button size="small">Small</me-button>
+    <me-button>Default</me-button>
+    <me-button size="large">Large</me-button>
   </div>
 </template>
-
-<script setup>
-import Button from "@/components/Button/Button.vue";
-</script>

@@ -1,16 +1,12 @@
 <template>
   <div class="basic block">
-    <Alert>this is the alert</Alert>
-    <Alert type="success">this is the success alert</Alert>
-    <Alert type="warning">this is the warning alert</Alert>
-    <Alert type="danger">this is the danger alert</Alert>
-    <Alert type="info">this is the info alert</Alert>
+    <me-alert>this is the me-alert</me-alert>
+    <me-alert type="success">this is the success me-alert</me-alert>
+    <me-alert type="warning">this is the warning me-alert</me-alert>
+    <me-alert type="danger">this is the danger me-alert</me-alert>
+    <me-alert type="info">this is the info me-alert</me-alert>
   </div>
 </template>
-
-<script setup>
-import Alert from "@/components/Alert/Alert.vue";
-</script>
 
 <style>
 .block {

@@ -1,7 +1,7 @@
 <template>
   <div class="custom-value block">
     <div class="row">
-      <Switch v-model="value" active-value="100" inactive-value="0" />
+      <me-switch v-model="value" active-value="100" inactive-value="0" />
       <span class="text">Current value: {{ value }}</span>
     </div>
     <div class="row">
@@ -12,7 +12,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import Switch from "@/components/Switch/Switch.vue";
 
 const value = ref('100');
 </script>

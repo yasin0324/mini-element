@@ -1,16 +1,15 @@
 <template>
   <div class="duration block">
     <div class="demo-button">
-      <Button @click="open1">默认3秒关闭</Button>
-      <Button @click="open2">不会自动关闭</Button>
-      <Button @click="open3">5秒后关闭</Button>
+      <me-button @click="open1">默认3秒关闭</me-button>
+      <me-button @click="open2">不会自动关闭</me-button>
+      <me-button @click="open3">5秒后关闭</me-button>
     </div>
   </div>
 </template>
 
 <script setup>
 import { createNotification } from "@/components/Notification/method.ts";
-import Button from "@/components/Button/Button.vue";
 
 const open1 = () => {
   createNotification({

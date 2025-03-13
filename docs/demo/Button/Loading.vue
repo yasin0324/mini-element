@@ -1,9 +1,5 @@
 <template>
   <div class="loading">
-    <Button type="primary" loading> Loading... </Button>
+    <me-button type="primary" loading> Loading... </me-button>
   </div>
 </template>
-
-<script setup>
-import Button from "@/components/Button/Button.vue";
-</script>

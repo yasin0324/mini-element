@@ -2,22 +2,21 @@
   <div class="size-switch block">
     <div class="row">
       <span class="label">Large:</span>
-      <Switch v-model="value1" size="large" />
+      <me-switch v-model="value1" size="large" />
     </div>
     <div class="row">
       <span class="label">Default:</span>
-      <Switch v-model="value2" />
+      <me-switch v-model="value2" />
     </div>
     <div class="row">
       <span class="label">Small:</span>
-      <Switch v-model="value3" size="small" />
+      <me-switch v-model="value3" size="small" />
     </div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import Switch from "@/components/Switch/Switch.vue";
 
 const value1 = ref(true);
 const value2 = ref(true);

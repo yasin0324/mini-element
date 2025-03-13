@@ -1,13 +1,12 @@
 <template>
   <div class="basic block">
-    <Switch v-model="value" />
-    <div class="text">Switch value: {{ value }}</div>
+    <me-switch v-model="value" />
+    <div class="text">me-switch value: {{ value }}</div>
   </div>
 </template>
 
 <script setup>
 import { ref } from 'vue';
-import Switch from "@/components/Switch/Switch.vue";
 
 const value = ref(true);
 </script>

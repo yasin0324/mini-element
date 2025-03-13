@@ -1,11 +1,11 @@
 <template>
   <div class="disabled block">
     <div class="row">
-      <Switch v-model="value1" disabled />
+      <me-switch v-model="value1" disabled />
       <span class="text">Disabled when off</span>
     </div>
     <div class="row">
-      <Switch v-model="value2" disabled />
+      <me-switch v-model="value2" disabled />
       <span class="text">Disabled when on</span>
     </div>
   </div>
@@ -13,7 +13,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import Switch from "@/components/Switch/Switch.vue";
 
 const value1 = ref(false);
 const value2 = ref(true);

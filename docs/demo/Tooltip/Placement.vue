@@ -1,58 +1,53 @@
 <template>
   <div class="tooltip-base-box">
     <div class="row center">
-      <Tooltip content="Top Left prompts info" placement="top-start">
-        <Button>top-start</Button>
-      </Tooltip>
-      <Tooltip content="Top Center prompts info" placement="top">
-        <Button>top</Button>
-      </Tooltip>
-      <Tooltip content="Top Right prompts info" placement="top-end">
-        <Button>top-end</Button>
-      </Tooltip>
+      <me-tooltip content="Top Left prompts info" placement="top-start">
+        <me-button>top-start</me-button>
+      </me-tooltip>
+      <me-tooltip content="Top Center prompts info" placement="top">
+        <me-button>top</me-button>
+      </me-tooltip>
+      <me-tooltip content="Top Right prompts info" placement="top-end">
+        <me-button>top-end</me-button>
+      </me-tooltip>
     </div>
     <div class="row">
-      <Tooltip content="Left Top prompts info" placement="left-start">
-        <Button>left-start</Button>
-      </Tooltip>
-      <Tooltip content="Right Top prompts info" placement="right-start">
-        <Button>right-start</Button>
-      </Tooltip>
+      <me-tooltip content="Left Top prompts info" placement="left-start">
+        <me-button>left-start</me-button>
+      </me-tooltip>
+      <me-tooltip content="Right Top prompts info" placement="right-start">
+        <me-button>right-start</me-button>
+      </me-tooltip>
     </div>
     <div class="row">
-      <Tooltip content="Left Center prompts info" placement="left">
-        <Button class="mt-3 mb-3">left</Button>
-      </Tooltip>
-      <Tooltip content="Right Center prompts info" placement="right">
-        <Button>right</Button>
-      </Tooltip>
+      <me-tooltip content="Left Center prompts info" placement="left">
+        <me-button class="mt-3 mb-3">left</me-button>
+      </me-tooltip>
+      <me-tooltip content="Right Center prompts info" placement="right">
+        <me-button>right</me-button>
+      </me-tooltip>
     </div>
     <div class="row">
-      <Tooltip content="Left Bottom prompts info" placement="left-end">
-        <Button>left-end</Button>
-      </Tooltip>
-      <Tooltip content="Right Bottom prompts info" placement="right-end">
-        <Button>right-end</Button>
-      </Tooltip>
+      <me-tooltip content="Left Bottom prompts info" placement="left-end">
+        <me-button>left-end</me-button>
+      </me-tooltip>
+      <me-tooltip content="Right Bottom prompts info" placement="right-end">
+        <me-button>right-end</me-button>
+      </me-tooltip>
     </div>
     <div class="row center">
-      <Tooltip content="Bottom Left prompts info" placement="bottom-start">
-        <Button>bottom-start</Button>
-      </Tooltip>
-      <Tooltip content="Bottom Center prompts info" placement="bottom">
-        <Button>bottom</Button>
-      </Tooltip>
-      <Tooltip content="Bottom Right prompts info" placement="bottom-end">
-        <Button>bottom-end</Button>
-      </Tooltip>
+      <me-tooltip content="Bottom Left prompts info" placement="bottom-start">
+        <me-button>bottom-start</me-button>
+      </me-tooltip>
+      <me-tooltip content="Bottom Center prompts info" placement="bottom">
+        <me-button>bottom</me-button>
+      </me-tooltip>
+      <me-tooltip content="Bottom Right prompts info" placement="bottom-end">
+        <me-button>bottom-end</me-button>
+      </me-tooltip>
     </div>
   </div>
 </template>
-
-<script setup>
-import Button from "@/components/Button/Button.vue";
-import Tooltip from "@/components/Tooltip/Tooltip.vue";
-</script>
 
 <style>
 .tooltip-base-box {

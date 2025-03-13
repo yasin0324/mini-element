@@ -1,25 +1,23 @@
 <template>
   <div class="placement block">
     <div class="row">
-      <Dropdown :menuOptions="options" placement="top">
-        <Button>向上弹出</Button>
-      </Dropdown>
-      <Dropdown :menuOptions="options" placement="bottom">
-        <Button>向下弹出</Button>
-      </Dropdown>
-      <Dropdown :menuOptions="options" placement="left">
-        <Button>向左弹出</Button>
-      </Dropdown>
-      <Dropdown :menuOptions="options" placement="right">
-        <Button>向右弹出</Button>
-      </Dropdown>
+      <me-dropdown :menuOptions="options" placement="top">
+        <me-button>向上弹出</me-button>
+      </me-dropdown>
+      <me-dropdown :menuOptions="options" placement="bottom">
+        <me-button>向下弹出</me-button>
+      </me-dropdown>
+      <me-dropdown :menuOptions="options" placement="left">
+        <me-button>向左弹出</me-button>
+      </me-dropdown>
+      <me-dropdown :menuOptions="options" placement="right">
+        <me-button>向右弹出</me-button>
+      </me-dropdown>
     </div>
   </div>
 </template>
 
 <script setup>
-import Button from "@/components/Button/Button.vue";
-import Dropdown from "@/components/Dropdown/Dropdown.vue";
 import { ref } from "vue";
 
 const options = ref([

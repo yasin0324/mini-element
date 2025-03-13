@@ -1,8 +1,8 @@
 <template>
   <div class="basic block">
     <div class="demo-button">
-      <Button type="primary" @click="open">创建通知</Button>
-      <Button @click="openVNode">创建支持 VNode 的通知</Button>
+      <me-button type="primary" @click="open">创建通知</me-button>
+      <me-button @click="openVNode">创建支持 VNode 的通知</me-button>
     </div>
   </div>
 </template>
@@ -10,7 +10,6 @@
 <script setup>
 import { h } from "vue";
 import { createNotification } from "@/components/Notification/method.ts";
-import Button from "@/components/Button/Button.vue";
 
 const open = () => {
   createNotification({
