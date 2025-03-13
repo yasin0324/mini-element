@@ -28,7 +28,11 @@ export const formContextKey = Symbol("formContextKey") as InjectionKey<FormConte
 
 export const formItemContextKey = Symbol("formItemContextKey") as InjectionKey<FormItemContext>;
 
-export interface validateError {
+export interface FormValidateError {
   errors: ValidateError[] | null;
   fields: ValidateFieldsError;
+}
+
+export interface FormInstance {
+  validate: () => Promise<any>;
 }
