@@ -132,17 +132,19 @@ const showPasswordArea = computed(
 const formItemContext = inject(formItemContextKey);
 
 // 校验
-const runValidation = () => {
-  formItemContext?.validate();
+const runValidation = (trigger?: string) => {
+  formItemContext?.validate(trigger);
 };
 
 const handleInput = () => {
   emits("update:modelValue", innerValue.value);
   emits("input", innerValue.value);
+  runValidation("input");
 };
 const handleChange = () => {
   emits("update:modelValue", innerValue.value);
   emits("change", innerValue.value);
+  runValidation("change");
 };
 const handleFocus = (e: FocusEvent) => {
   isFocus.value = true;
@@ -151,7 +153,7 @@ const handleFocus = (e: FocusEvent) => {
 const handleBlur = (e: FocusEvent) => {
   isFocus.value = false;
   emits("blur", e);
-  runValidation();
+  runValidation("blur");
 };
 const keepFocus = () => {
   inputRef.value?.focus();
