@@ -12,7 +12,7 @@ hero:
     actions:
         - theme: brand
           text: 安装
-          link: /components
+          link: /
         - theme: alt
           text: 组件
           link: /components/button
