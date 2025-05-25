@@ -23,7 +23,7 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     logo: "/img/logo.jpg",
     nav: [
-      { text: "安装", link: "/components" },
+      { text: "安装", link: "/" },
       { text: "组件", link: "/components/button" },
     ],
     sidebar: [
